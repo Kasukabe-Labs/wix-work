@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Expert Instructors Component</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400..900&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Playfair Display", serif;
+        background: transparent;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .instructor-card {
+        background: #2d2d2d;
+        border-radius: 12px;
+        padding: 12px 8px;
+        width: 200px;
+        text-align: center;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .instructor-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+      }
+
+      .icon-container {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 64px;
+        height: 64px;
+        border-radius: 50%;
+        border: 2px solid #fac85133;
+        margin-bottom: 24px;
+        transition: transform 0.3s ease;
+      }
+
+      .instructor-card:hover .icon-container {
+        transform: scale(1.1);
+      }
+
+      .icon-container i {
+        font-size: 24px;
+        color: #fac851;
+      }
+
+      .instructor-title {
+        color: #fff;
+        font-size: 20px;
+        font-weight: 700;
+        margin-bottom: 12px;
+        line-height: 1.2;
+      }
+
+      .instructor-description {
+        color: #ccc;
+        font-size: 14px;
+        line-height: 1.5;
+      }
+
+      /* Mobile Responsiveness */
+      @media (max-width: 480px) {
+        body {
+          padding: 15px;
+        }
+
+        .instructor-card {
+          padding: 24px 20px;
+          max-width: 100%;
+        }
+
+        .icon-container {
+          width: 56px;
+          height: 56px;
+          margin-bottom: 20px;
+        }
+
+        .icon-container i {
+          font-size: 20px;
+        }
+
+        .instructor-title {
+          font-size: 16px;
+          margin-bottom: 10px;
+        }
+
+        .instructor-description {
+          font-size: 12px;
+        }
+      }
+
+      /* Tablet Responsiveness */
+      @media (min-width: 481px) and (max-width: 768px) {
+        .instructor-card {
+          max-width: 300px;
+          padding: 28px 22px;
+        }
+
+        .instructor-title {
+          font-size: 18px;
+        }
+
+        .instructor-description {
+          font-size: 13px;
+        }
+      }
+
+      /* Large screens */
+      @media (min-width: 1200px) {
+        .instructor-card {
+          max-width: 340px;
+        }
+
+        .instructor-title {
+          font-size: 22px;
+        }
+
+        .instructor-description {
+          font-size: 15px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="instructor-card">
+      <div class="icon-container">
+        <i class="fa-solid fa-phone"></i>
+      </div>
+
+      <h3 class="instructor-title">24/7 Support</h3>
+
+      <p class="instructor-description">
+        Work on real projects to build your portfolio.
+      </p>
+    </div>
+  </body>
+</html>

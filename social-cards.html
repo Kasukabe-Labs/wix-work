@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact Section</title>
+
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Playfair Display", serif;
+        color: #fff;
+      }
+
+      .contact-container {
+        max-width: 1200px;
+        width: 100%;
+      }
+
+      .contact-grid {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 20px;
+        justify-items: center;
+      }
+
+      .contact-box {
+        background: #191919;
+        border-radius: 20px;
+        padding: 30px 20px;
+        text-align: center;
+        transition: all 0.3s ease;
+        cursor: pointer;
+        width: 100%;
+        max-width: 200px;
+        aspect-ratio: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+      }
+
+      .contact-box:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      }
+
+      .icon-wrapper {
+        width: 60px;
+        height: 60px;
+        border: 2px solid #fac85133;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 20px;
+        transition: all 0.3s ease;
+      }
+
+      .contact-box:hover .icon-wrapper {
+        border-color: #fac851;
+        box-shadow: 0 0 20px rgba(250, 200, 81, 0.3);
+      }
+
+      .contact-icon {
+        font-size: 24px;
+        color: #fac851;
+        transition: all 0.3s ease;
+      }
+
+      .contact-box:hover .contact-icon {
+        transform: scale(1.1);
+      }
+
+      .contact-title {
+        font-family: "Playfair Display", serif;
+        font-size: 16px;
+        font-weight: 600;
+        color: #fff;
+        margin-bottom: 8px;
+      }
+
+      .contact-info {
+        font-family: "Playfair Display", serif;
+        font-size: 13px;
+        color: #ccc;
+        line-height: 1.4;
+      }
+
+      /* Tablet - 3 boxes per row */
+      @media (max-width: 1024px) {
+        .contact-grid {
+          grid-template-columns: repeat(3, 1fr);
+          gap: 15px;
+        }
+
+        .contact-box {
+          max-width: 180px;
+          padding: 25px 15px;
+        }
+
+        .icon-wrapper {
+          width: 55px;
+          height: 55px;
+          margin-bottom: 15px;
+        }
+
+        .contact-icon {
+          font-size: 22px;
+        }
+
+        .contact-title {
+          font-size: 15px;
+        }
+
+        .contact-info {
+          font-size: 12px;
+        }
+      }
+
+      /* Mobile - 2 boxes per row */
+      @media (max-width: 768px) {
+        body {
+          padding: 20px 15px;
+        }
+
+        .contact-grid {
+          grid-template-columns: repeat(2, 1fr);
+          gap: 12px;
+        }
+
+        .contact-box {
+          max-width: 160px;
+          padding: 20px 12px;
+          border-radius: 15px;
+        }
+
+        .icon-wrapper {
+          width: 50px;
+          height: 50px;
+          margin-bottom: 12px;
+        }
+
+        .contact-icon {
+          font-size: 20px;
+        }
+
+        .contact-title {
+          font-size: 14px;
+          margin-bottom: 6px;
+        }
+
+        .contact-info {
+          font-size: 11px;
+        }
+      }
+
+      /* Extra small mobile */
+      @media (max-width: 480px) {
+        .contact-grid {
+          gap: 10px;
+        }
+
+        .contact-box {
+          max-width: 140px;
+          padding: 18px 10px;
+        }
+
+        .icon-wrapper {
+          width: 45px;
+          height: 45px;
+          margin-bottom: 10px;
+        }
+
+        .contact-icon {
+          font-size: 18px;
+        }
+
+        .contact-title {
+          font-size: 13px;
+        }
+
+        .contact-info {
+          font-size: 10px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="contact-container">
+      <div class="contact-grid">
+        <div class="contact-box">
+          <div class="icon-wrapper">
+            <i class="fab fa-whatsapp contact-icon"></i>
+          </div>
+          <h3 class="contact-title">WhatsApp Us</h3>
+          <p class="contact-info">456 Knowledge Street</p>
+        </div>
+
+        <div class="contact-box">
+          <div class="icon-wrapper">
+            <i class="fas fa-phone contact-icon"></i>
+          </div>
+          <h3 class="contact-title">Call Us</h3>
+          <p class="contact-info">+91 11-2233-44</p>
+        </div>
+
+        <div class="contact-box">
+          <div class="icon-wrapper">
+            <i class="fas fa-map-marker-alt contact-icon"></i>
+          </div>
+          <h3 class="contact-title">Visit us</h3>
+          <p class="contact-info">123 Avenue, Bengaluru</p>
+        </div>
+
+        <div class="contact-box">
+          <div class="icon-wrapper">
+            <i class="fas fa-envelope contact-icon"></i>
+          </div>
+          <h3 class="contact-title">Email us</h3>
+          <p class="contact-info">123@gmail.com</p>
+        </div>
+
+        <div class="contact-box">
+          <div class="icon-wrapper">
+            <i class="fas fa-globe contact-icon"></i>
+          </div>
+          <h3 class="contact-title">Website</h3>
+          <p class="contact-info">www.123.com</p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

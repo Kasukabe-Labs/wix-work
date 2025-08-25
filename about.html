@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Film Company Section</title>
+
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Playfair Display", serif;
+        background: #000; /* replace with bg image if needed */
+        color: #fff;
+        line-height: 1.6;
+      }
+
+      .about-section {
+        max-width: 1200px;
+        margin: auto;
+        padding: 50px 20px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+        position: relative;
+      }
+
+      .about-left {
+        position: relative;
+      }
+
+      .about-left h1 {
+        font-size: 10rem;
+        font-weight: 700;
+        color: rgba(255, 255, 255, 0.05);
+        position: absolute;
+        top: -40px;
+        left: -10px;
+        z-index: 0;
+      }
+
+      .about-left .content {
+        position: relative;
+        z-index: 1;
+        padding-top: 60px;
+      }
+
+      .about-left h3 {
+        color: #ffe998;
+        margin-bottom: 10px;
+        font-size: 1.2rem;
+      }
+
+      .about-left p {
+        font-size: 0.95rem;
+        margin-bottom: 15px;
+      }
+
+      .about-left span {
+        color: #e59935;
+        font-weight: 600;
+      }
+
+      .btn {
+        display: inline-block;
+        background: transparent;
+        border: 1px solid #e59935;
+        color: #e59935;
+        padding: 8px 18px;
+        border-radius: 20px;
+        font-size: 0.9rem;
+        transition: 0.3s ease;
+      }
+
+      .btn:hover {
+        background: #e59935;
+        color: #000;
+      }
+
+      .quote {
+        margin: 40px 0;
+        font-style: italic;
+        font-size: 1rem;
+        color: #ccc;
+      }
+
+      .quote span {
+        color: #ffe998;
+        font-weight: 600;
+      }
+
+      .courses-card {
+        background: #111;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
+      }
+
+      .courses-card img {
+        width: 100%;
+        display: block;
+      }
+
+      .courses-card .card-content {
+        padding: 15px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .courses-card a {
+        color: #e59935;
+        font-size: 0.9rem;
+        text-decoration: none;
+      }
+
+      .about-right {
+        position: relative;
+      }
+
+      .about-right h1 {
+        font-size: 10rem;
+        font-weight: 700;
+        color: rgba(255, 255, 255, 0.05);
+        position: absolute;
+        top: -40px;
+        left: -10px;
+        z-index: 0;
+      }
+
+      .about-right .content {
+        position: relative;
+        z-index: 1;
+        padding-top: 60px;
+      }
+
+      .about-right h3 {
+        color: #ffe998;
+        margin-bottom: 10px;
+        font-size: 1.2rem;
+      }
+
+      .about-right p {
+        font-size: 0.95rem;
+        margin-bottom: 15px;
+      }
+
+      .about-right span {
+        color: #e59935;
+        font-weight: 600;
+      }
+
+      /* Responsive */
+      @media (max-width: 900px) {
+        .about-section {
+          grid-template-columns: 1fr;
+          gap: 60px;
+        }
+
+        .about-left h1,
+        .about-right h1 {
+          font-size: 6rem;
+          top: -20px;
+        }
+      }
+
+      @media (max-width: 600px) {
+        .about-left h1,
+        .about-right h1 {
+          font-size: 4rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <section class="about-section">
+      <!-- Left -->
+      <div class="about-left">
+        <h1>01</h1>
+        <div class="content">
+          <h3>About Us</h3>
+          <p>
+            <span>Akshay Entertainment</span> is a film production company...
+          </p>
+          <a href="#" class="btn">Know More</a>
+
+          <div class="quote">
+            “Through the <span>lens of cinema</span>, we capture not just
+            moments, but <span>emotions, cultures</span>, and the untold
+            stories...”
+          </div>
+
+          <div class="courses-card">
+            <img
+              src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=600"
+              alt="Course"
+            />
+            <div class="card-content">
+              <a href="#">Courses <i class="fas fa-arrow-right"></i></a>
+              <a href="#">See all <i class="fas fa-arrow-right"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right -->
+      <div class="about-right">
+        <h1>02</h1>
+        <div class="content">
+          <h3>Our Story</h3>
+          <p>
+            <span>Started</span> in The Year 2018, Produced its 1st Short
+            Film...
+          </p>
+          <p>We provide film and video line production services...</p>
+          <p>Akshay Entertainment provides a full spectrum...</p>
+          <p>Not only do we help local and international film companies...</p>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>

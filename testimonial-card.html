@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Testimonial Cards</title>
+
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      body {
+        font-family: "Playfair Display", serif;
+        display: flex;
+        justify-content: center;
+        padding: 60px 20px; /* small top padding so avatar never cuts off */
+      }
+
+      .card-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        justify-content: center;
+        max-width: 1000px;
+      }
+
+      .testimonial-card {
+        position: relative;
+        background-color: #010105;
+        border-radius: 12px;
+        padding: 55px 18px 25px; /* tighter */
+        max-width: 300px; /* smaller so 3 fit easily */
+        flex: 1 1 280px; /* responsive sizing */
+        text-align: center;
+        border: 1px solid transparent;
+        border-radius: 16px;
+        background-clip: padding-box;
+        box-shadow: 0 0 12px rgba(0, 0, 0, 0.4);
+      }
+
+      .testimonial-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        border-radius: 16px;
+        padding: 1px;
+        background: linear-gradient(90deg, #e59935, #ffe998, #e59935);
+        -webkit-mask: linear-gradient(#fff 0 0) content-box,
+          linear-gradient(#fff 0 0);
+        -webkit-mask-composite: destination-out;
+        mask-composite: exclude;
+        pointer-events: none;
+      }
+
+      .avatar {
+        position: absolute;
+        top: -28px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 56px;
+        height: 56px;
+        border-radius: 50%;
+        overflow: hidden;
+        border: 3px solid #0b0b0b;
+      }
+
+      .avatar img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .name {
+        margin-top: 12px;
+        font-size: 18px;
+        font-weight: 700;
+        background: linear-gradient(90deg, #e59935, #ffe998, #e59935);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      .role {
+        font-size: 13px;
+        font-weight: 500;
+        color: #fff;
+        margin-bottom: 10px;
+      }
+
+      .quote {
+        font-size: 13px;
+        line-height: 1.5;
+        color: #b5b5b5;
+      }
+
+      /* Mobile responsive */
+      @media (max-width: 768px) {
+        .testimonial-card {
+          flex: 1 1 100%;
+          max-width: 100%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="card-container">
+      <div class="testimonial-card">
+        <div class="avatar">
+          <img
+            src="https://randomuser.me/api/portraits/women/45.jpg"
+            alt="User Avatar"
+          />
+        </div>
+        <h2 class="name">Bessie Cooper</h2>
+        <p class="role">Web Designer</p>
+        <p class="quote">
+          The Photoshop course completely transformed my design skills. I went
+          from basic edits to creating professional-level graphics in just a few
+          weeks. The step-by-step guidance and creative assignments made
+          learning fun and practical.
+        </p>
+      </div>
+
+      <div class="testimonial-card">
+        <div class="avatar">
+          <img
+            src="https://randomuser.me/api/portraits/men/32.jpg"
+            alt="User Avatar"
+          />
+        </div>
+        <h2 class="name">John Doe</h2>
+        <p class="role">UI/UX Designer</p>
+        <p class="quote">
+          The course gave me the confidence to start freelancing. I learned
+          practical tips that clients actually value and it made a huge
+          difference in my work.
+        </p>
+      </div>
+
+      <div class="testimonial-card">
+        <div class="avatar">
+          <img
+            src="https://randomuser.me/api/portraits/women/12.jpg"
+            alt="User Avatar"
+          />
+        </div>
+        <h2 class="name">Emily Smith</h2>
+        <p class="role">Graphic Artist</p>
+        <p class="quote">
+          I loved how structured everything was. The assignments kept me
+          motivated and the feedback I got helped me improve much faster.
+        </p>
+      </div>
+    </div>
+  </body>
+</html>

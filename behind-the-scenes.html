@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Responsive Gallery</title>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400..900&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Playfair Display", serif;
+      }
+
+      .gallery-container {
+        max-width: 1000px;
+        margin: 0 auto;
+      }
+
+      .tabs-container {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 40px;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+
+      .tab {
+        background: transparent;
+        border: 1px solid #333;
+        border-radius: 25px;
+        padding: 8px 20px;
+        color: #999;
+        font-size: 14px;
+        font-family: "Playfair Display", serif;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        white-space: nowrap;
+      }
+
+      .tab:hover {
+        border-color: #555;
+        color: #ccc;
+      }
+
+      .tab.active {
+        background: transparent;
+        border-color: #e59935;
+        color: #e59935;
+        font-weight: 600;
+      }
+
+      .gallery-grid {
+        position: relative;
+        width: 100%;
+        height: 400px;
+        margin: 0 auto;
+      }
+
+      .gallery-item {
+        position: absolute;
+        border-radius: 20px;
+        overflow: hidden;
+        cursor: pointer;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .gallery-item:hover {
+        transform: scale(1.05);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        z-index: 10;
+      }
+
+      .gallery-item img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .loading {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #1a1a1a;
+        color: #666;
+        font-size: 14px;
+        width: 100%;
+        height: 100%;
+        font-family: "Playfair Display", serif;
+      }
+
+      /* Desktop Layout - Keep original positioning */
+      .item-1 {
+        left: 0;
+        top: 25%;
+        width: 12%;
+        height: 50%;
+      }
+
+      .item-2 {
+        left: 15%;
+        top: 0;
+        width: 20%;
+        height: 47%;
+      }
+
+      .item-3 {
+        left: 38%;
+        top: 0;
+        width: 24%;
+        height: 100%;
+      }
+
+      .item-4 {
+        left: 65%;
+        top: 0;
+        width: 20%;
+        height: 47%;
+      }
+
+      .item-5 {
+        left: 15%;
+        top: 53%;
+        width: 20%;
+        height: 47%;
+      }
+
+      .item-6 {
+        left: 65%;
+        top: 53%;
+        width: 20%;
+        height: 47%;
+      }
+
+      .item-7 {
+        right: 0;
+        top: 25%;
+        width: 12%;
+        height: 50%;
+      }
+
+      /* Mobile First Approach - Complete rewrite for mobile */
+      @media (max-width: 768px) {
+        body {
+          padding: 15px;
+        }
+
+        .tabs-container {
+          margin-bottom: 25px;
+          gap: 8px;
+          justify-content: flex-start;
+          overflow-x: auto;
+          padding-bottom: 5px;
+        }
+
+        .tab {
+          padding: 10px 16px;
+          font-size: 13px;
+          flex-shrink: 0;
+        }
+
+        .gallery-grid {
+          position: static;
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          grid-template-rows: repeat(6, 1fr);
+          gap: 10px;
+          height: 600px;
+          width: 100%;
+        }
+
+        .gallery-item {
+          position: static;
+          width: 100%;
+          height: 100%;
+          border-radius: 15px;
+        }
+
+        .gallery-item:hover {
+          transform: scale(1.02);
+        }
+
+        /* Mobile Grid Layout */
+        .item-1 {
+          grid-column: 1;
+          grid-row: 1 / 3;
+        }
+
+        .item-2 {
+          grid-column: 2;
+          grid-row: 1;
+        }
+
+        .item-3 {
+          grid-column: 1 / 3;
+          grid-row: 3 / 5;
+        }
+
+        .item-4 {
+          grid-column: 2;
+          grid-row: 2;
+        }
+
+        .item-5 {
+          grid-column: 1;
+          grid-row: 5;
+        }
+
+        .item-6 {
+          grid-column: 2;
+          grid-row: 5;
+        }
+
+        .item-7 {
+          grid-column: 1 / 3;
+          grid-row: 6;
+        }
+      }
+
+      /* Extra small mobile screens */
+      @media (max-width: 480px) {
+        body {
+          padding: 10px;
+        }
+
+        .tabs-container {
+          margin-bottom: 20px;
+          gap: 6px;
+        }
+
+        .tab {
+          padding: 8px 12px;
+          font-size: 12px;
+        }
+
+        .gallery-grid {
+          height: 550px;
+          gap: 8px;
+        }
+
+        .gallery-item {
+          border-radius: 12px;
+        }
+      }
+
+      /* Tablet Responsiveness */
+      @media (min-width: 769px) and (max-width: 1024px) {
+        .gallery-grid {
+          height: 350px;
+        }
+
+        .item-1 {
+          width: 14%;
+          height: 55%;
+          top: 22.5%;
+        }
+
+        .item-7 {
+          width: 14%;
+          height: 55%;
+          top: 22.5%;
+        }
+
+        .item-2,
+        .item-4,
+        .item-5,
+        .item-6 {
+          width: 18%;
+        }
+
+        .item-2 {
+          left: 17%;
+        }
+
+        .item-4 {
+          left: 63%;
+        }
+
+        .item-5 {
+          left: 17%;
+        }
+
+        .item-6 {
+          left: 63%;
+        }
+      }
+
+      /* Large Desktop */
+      @media (min-width: 1200px) {
+        .gallery-container {
+          max-width: 1200px;
+        }
+
+        .gallery-grid {
+          height: 450px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="gallery-container">
+      <div class="tabs-container">
+        <button class="tab active" data-category="all">All</button>
+        <button class="tab" data-category="production">Production</button>
+        <button class="tab" data-category="direction">Direction</button>
+        <button class="tab" data-category="cinematography">
+          Cinematography
+        </button>
+        <button class="tab" data-category="audio">Audio</button>
+        <button class="tab" data-category="equipment">Equipment</button>
+        <button class="tab" data-category="editing">Editing</button>
+        <button class="tab" data-category="vfx">VFX</button>
+      </div>
+
+      <div class="gallery-grid" id="galleryGrid">
+        <div class="gallery-item item-1 loading">Loading...</div>
+        <div class="gallery-item item-2 loading">Loading...</div>
+        <div class="gallery-item item-3 loading">Loading...</div>
+        <div class="gallery-item item-4 loading">Loading...</div>
+        <div class="gallery-item item-5 loading">Loading...</div>
+        <div class="gallery-item item-6 loading">Loading...</div>
+        <div class="gallery-item item-7 loading">Loading...</div>
+      </div>
+    </div>
+
+    <script>
+      const imageCategories = {
+        all: [
+          "https://picsum.photos/400/600?random=1",
+          "https://picsum.photos/500/400?random=2",
+          "https://picsum.photos/400/800?random=3",
+          "https://picsum.photos/500/400?random=4",
+          "https://picsum.photos/500/300?random=5",
+          "https://picsum.photos/500/300?random=6",
+          "https://picsum.photos/300/800?random=7",
+        ],
+        production: [
+          "https://picsum.photos/400/600?random=10",
+          "https://picsum.photos/500/400?random=11",
+          "https://picsum.photos/400/800?random=12",
+          "https://picsum.photos/500/400?random=13",
+          "https://picsum.photos/500/300?random=14",
+          "https://picsum.photos/500/300?random=15",
+          "https://picsum.photos/300/800?random=16",
+        ],
+        direction: [
+          "https://picsum.photos/400/600?random=20",
+          "https://picsum.photos/500/400?random=21",
+          "https://picsum.photos/400/800?random=22",
+          "https://picsum.photos/500/400?random=23",
+          "https://picsum.photos/500/300?random=24",
+          "https://picsum.photos/500/300?random=25",
+          "https://picsum.photos/300/800?random=26",
+        ],
+        cinematography: [
+          "https://picsum.photos/400/600?random=30",
+          "https://picsum.photos/500/400?random=31",
+          "https://picsum.photos/400/800?random=32",
+          "https://picsum.photos/500/400?random=33",
+          "https://picsum.photos/500/300?random=34",
+          "https://picsum.photos/500/300?random=35",
+          "https://picsum.photos/300/800?random=36",
+        ],
+        audio: [
+          "https://picsum.photos/400/600?random=40",
+          "https://picsum.photos/500/400?random=41",
+          "https://picsum.photos/400/800?random=42",
+          "https://picsum.photos/500/400?random=43",
+          "https://picsum.photos/500/300?random=44",
+          "https://picsum.photos/500/300?random=45",
+          "https://picsum.photos/300/800?random=46",
+        ],
+        equipment: [
+          "https://picsum.photos/400/600?random=50",
+          "https://picsum.photos/500/400?random=51",
+          "https://picsum.photos/400/800?random=52",
+          "https://picsum.photos/500/400?random=53",
+          "https://picsum.photos/500/300?random=54",
+          "https://picsum.photos/500/300?random=55",
+          "https://picsum.photos/300/800?random=56",
+        ],
+        editing: [
+          "https://picsum.photos/400/600?random=60",
+          "https://picsum.photos/500/400?random=61",
+          "https://picsum.photos/400/800?random=62",
+          "https://picsum.photos/500/400?random=63",
+          "https://picsum.photos/500/300?random=64",
+          "https://picsum.photos/500/300?random=65",
+          "https://picsum.photos/300/800?random=66",
+        ],
+        vfx: [
+          "https://picsum.photos/400/600?random=70",
+          "https://picsum.photos/500/400?random=71",
+          "https://picsum.photos/400/800?random=72",
+          "https://picsum.photos/500/400?random=73",
+          "https://picsum.photos/500/300?random=74",
+          "https://picsum.photos/500/300?random=75",
+          "https://picsum.photos/300/800?random=76",
+        ],
+      };
+
+      function loadImages(category) {
+        const galleryItems = document.querySelectorAll(".gallery-item");
+        const images = imageCategories[category];
+
+        galleryItems.forEach((item, index) => {
+          item.innerHTML = '<div class="loading">Loading...</div>';
+
+          const img = new Image();
+          img.onload = function () {
+            item.innerHTML = "";
+            item.appendChild(img);
+          };
+          img.onerror = function () {
+            item.innerHTML = '<div class="loading">Error loading</div>';
+          };
+          img.src = images[index];
+          img.alt = `${category} image ${index + 1}`;
+        });
+      }
+
+      function initTabs() {
+        const tabs = document.querySelectorAll(".tab");
+
+        tabs.forEach((tab) => {
+          tab.addEventListener("click", function () {
+            // Remove active class from all tabs
+            tabs.forEach((t) => t.classList.remove("active"));
+
+            // Add active class to clicked tab
+            this.classList.add("active");
+
+            // Load images for selected category
+            const category = this.getAttribute("data-category");
+            loadImages(category);
+          });
+        });
+      }
+
+      // Initialize the gallery
+      document.addEventListener("DOMContentLoaded", function () {
+        initTabs();
+        loadImages("all"); // Load default images
+      });
+    </script>
+  </body>
+</html>

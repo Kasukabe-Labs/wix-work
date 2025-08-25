@@ -1,7 +1,1 @@
-B
-B
-C
-C
-C
-C
-
+### Wix gig components

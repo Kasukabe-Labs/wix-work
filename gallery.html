@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portrait Gallery</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Playfair Display", serif;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+      }
+
+      .gallery-container {
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        gap: 20px;
+        max-width: 1200px;
+        width: 100%;
+        height: 70vh;
+        min-height: 500px;
+      }
+
+      .portraits-column {
+        display: grid;
+        grid-template-rows: 1fr 1fr;
+        gap: 15px;
+      }
+
+      .main-portrait {
+        position: relative;
+        border-radius: 20px;
+        overflow: hidden;
+        max-height: 800px;
+      }
+
+      .main-portrait img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        filter: sepia(20%) saturate(1.2) contrast(1.1);
+        transition: all 0.5s ease;
+      }
+
+      .main-portrait:hover img {
+        transform: scale(1.05);
+        filter: sepia(10%) saturate(1.4) contrast(1.2);
+      }
+
+      @keyframes flicker {
+        0% {
+          transform: rotate(-2deg) scale(1);
+        }
+        50% {
+          transform: rotate(1deg) scale(1.05);
+        }
+        100% {
+          transform: rotate(-1deg) scale(0.98);
+        }
+      }
+
+      .portraits-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr; /* 2 per row */
+        grid-template-rows: 1fr 1fr; /* 2 rows */
+        gap: 15px;
+      }
+
+      .portrait-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
+      }
+
+      .small-portrait {
+        position: relative;
+        border-radius: 15px;
+        overflow: hidden;
+        background: linear-gradient(45deg, #2a2a3e, #1e1e32);
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3),
+          inset 0 1px 0 rgba(255, 255, 255, 0.05);
+        transition: all 0.3s ease;
+        cursor: pointer;
+      }
+
+      .small-portrait:hover {
+        transform: translateY(-5px) scale(1.02);
+        box-shadow: 0 20px 45px rgba(0, 0, 0, 0.4),
+          inset 0 1px 0 rgba(255, 255, 255, 0.1);
+      }
+
+      .small-portrait img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: all 0.3s ease;
+      }
+
+      .small-portrait:hover img {
+        filter: brightness(1.1) contrast(1.1);
+      }
+
+      .portrait-overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          135deg,
+          rgba(0, 0, 0, 0) 0%,
+          rgba(0, 0, 0, 0.1) 50%,
+          rgba(0, 0, 0, 0.3) 100%
+        );
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+
+      .small-portrait:hover .portrait-overlay {
+        opacity: 1;
+      }
+
+      /* Mobile Responsive */
+      @media (max-width: 768px) {
+        .gallery-container {
+          grid-template-columns: 1fr;
+          grid-template-rows: auto auto;
+          gap: 15px;
+        }
+
+        .portraits-column {
+          display: grid;
+          grid-template-columns: 1fr 1fr; /* 2 per row */
+          grid-template-rows: auto;
+          gap: 10px;
+        }
+
+        .main-portrait {
+          min-height: 300px;
+          max-height: 400px;
+        }
+
+        .portraits-grid {
+          grid-template-columns: 1fr 1fr; /* 2 per row */
+          grid-template-rows: auto;
+          gap: 10px;
+        }
+
+        .portrait-row {
+          display: contents;
+        }
+
+        .small-portrait {
+          border-radius: 12px;
+          min-height: 120px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        body {
+          padding: 10px;
+        }
+
+        .gallery-container {
+          gap: 10px;
+        }
+
+        .main-portrait {
+          min-height: 220px;
+          max-height: 300px;
+          border-radius: 15px;
+        }
+
+        .portraits-grid {
+          grid-template-columns: repeat(2, 1fr);
+          grid-template-rows: repeat(2, 1fr);
+        }
+
+        .small-portrait {
+          min-height: 100px;
+          border-radius: 10px;
+        }
+      }
+
+      /* Loading animation */
+      .portrait-loading {
+        background: linear-gradient(
+          90deg,
+          #2a2a3e 25%,
+          #3a3a5e 50%,
+          #2a2a3e 75%
+        );
+        background-size: 200% 100%;
+        animation: loading 1.5s infinite;
+      }
+
+      @keyframes loading {
+        0% {
+          background-position: 200% 0;
+        }
+        100% {
+          background-position: -200% 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="gallery-container">
+      <!-- Left: 4 Small Portraits -->
+      <div class="portraits-grid">
+        <div class="small-portrait">
+          <img
+            src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop&crop=face"
+            alt="Portrait 1"
+          />
+          <div class="portrait-overlay"></div>
+        </div>
+        <div class="small-portrait">
+          <img
+            src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&h=400&fit=crop&crop=face"
+            alt="Portrait 2"
+          />
+          <div class="portrait-overlay"></div>
+        </div>
+        <div class="small-portrait">
+          <img
+            src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=400&h=400&fit=crop&crop=face"
+            alt="Portrait 3"
+          />
+          <div class="portrait-overlay"></div>
+        </div>
+        <div class="small-portrait">
+          <img
+            src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=400&h=400&fit=crop&crop=face"
+            alt="Portrait 4"
+          />
+          <div class="portrait-overlay"></div>
+        </div>
+      </div>
+
+      <!-- Right: Main Portrait -->
+      <div class="main-portrait">
+        <img
+          src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=1000&fit=crop&crop=face"
+          alt="Main Portrait"
+        />
+      </div>
+    </div>
+  </body>
+</html>

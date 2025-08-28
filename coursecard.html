@@ -22,18 +22,18 @@
 
       body {
         font-family: "Playfair Display", serif;
-        background: #010105;
-        padding: 10px;
+        padding: 0px;
         min-height: 100vh;
+        width: 100%;
         display: flex;
         align-items: center;
         justify-content: center;
       }
 
       .course-card {
-        background: #2d2d2d;
+        background: #191919;
         border-radius: 12px;
-        padding: 24px;
+        padding: 14px;
         max-width: 450px;
         width: 100%;
         box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
@@ -48,7 +48,9 @@
       .course-image {
         width: 100%;
         height: 320px;
-        background: linear-gradient(135deg, #f0f0f0, #e0e0e0);
+        background-image: url("https://raw.githubusercontent.com/Kasukabe-Labs/wix-work/main/imgs/photoshop.jpg");
+        background-size: contain;
+        background-position: center;
         border-radius: 8px;
         margin-bottom: 20px;
         display: flex;
@@ -207,18 +209,44 @@
         font-size: 12px;
       }
 
-      .enroll-btn {
-        background: linear-gradient(135deg, #e59935, #ffe998, #e59935);
+      /* Button Styles */
+      .buttons-container {
+        display: flex;
+        gap: 12px;
+      }
+
+      .btn {
         border: none;
         border-radius: 25px;
         padding: 12px 24px;
-        color: #2d2d2d;
         font-size: 14px;
         font-weight: 600;
         cursor: pointer;
         transition: all 0.3s ease;
         position: relative;
         overflow: hidden;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .know-more-btn {
+        background: transparent;
+        border: 2px solid #e59935;
+        color: #e59935;
+      }
+
+      .know-more-btn:hover {
+        background: #e59935;
+        color: #2d2d2d;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(229, 153, 53, 0.3);
+      }
+
+      .enroll-btn {
+        background: linear-gradient(135deg, #e59935, #ffe998, #e59935);
+        color: #2d2d2d;
       }
 
       .enroll-btn:hover {
@@ -248,6 +276,137 @@
 
       .enroll-btn:hover::before {
         left: 100%;
+      }
+
+      /* Modal Styles */
+      .modal-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.8);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 1000;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s ease, visibility 0.3s ease;
+      }
+
+      .modal-overlay.active {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .modal {
+        background: #2d2d2d;
+        border-radius: 12px;
+        padding: 32px;
+        max-width: 400px;
+        width: 90%;
+        position: relative;
+        transform: translateY(-20px);
+        transition: transform 0.3s ease;
+      }
+
+      .modal-overlay.active .modal {
+        transform: translateY(0);
+      }
+
+      .modal-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 24px;
+      }
+
+      .modal-title {
+        color: #fff;
+        font-size: 24px;
+        font-weight: 700;
+      }
+
+      .close-btn {
+        background: none;
+        border: none;
+        color: #999;
+        font-size: 24px;
+        cursor: pointer;
+        padding: 0;
+        width: 32px;
+        height: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        transition: all 0.3s ease;
+      }
+
+      .close-btn:hover {
+        background: #404040;
+        color: #fff;
+      }
+
+      .form-group {
+        margin-bottom: 20px;
+      }
+
+      .form-label {
+        display: block;
+        color: #fff;
+        font-size: 14px;
+        font-weight: 600;
+        margin-bottom: 8px;
+      }
+
+      .form-input {
+        width: 100%;
+        padding: 12px 16px;
+        background: #404040;
+        border: 2px solid transparent;
+        border-radius: 8px;
+        color: #fff;
+        font-size: 14px;
+        transition: all 0.3s ease;
+      }
+
+      .form-input:focus {
+        outline: none;
+        border-color: #e59935;
+        background: #4a4a4a;
+      }
+
+      .form-input::placeholder {
+        color: #999;
+      }
+
+      .submit-btn {
+        width: 100%;
+        background: linear-gradient(135deg, #e59935, #ffe998, #e59935);
+        border: none;
+        border-radius: 8px;
+        padding: 14px 24px;
+        color: #2d2d2d;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .submit-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(229, 153, 53, 0.4);
+      }
+
+      .submit-btn:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+        transform: none;
+        box-shadow: none;
       }
 
       /* Mobile Responsiveness */
@@ -297,10 +456,14 @@
           font-size: 10px;
         }
 
-        .enroll-btn {
-          font-size: 14px;
+        .buttons-container {
           width: 100%;
-          padding: 14px 24px;
+        }
+
+        .btn {
+          flex: 1;
+          font-size: 12px;
+          padding: 12px 16px;
         }
 
         .course-footer {
@@ -311,6 +474,15 @@
 
         .students-info {
           justify-content: center;
+        }
+
+        .modal {
+          padding: 24px;
+          margin: 20px;
+        }
+
+        .modal-title {
+          font-size: 20px;
         }
       }
 
@@ -343,9 +515,7 @@
   </head>
   <body>
     <div class="course-card">
-      <div class="course-image">
-        <i class="fas fa-image"></i>
-      </div>
+      <div class="course-image"></div>
 
       <div class="course-header">
         <div class="rating-price">
@@ -387,8 +557,174 @@
           </div>
         </div>
 
-        <button class="enroll-btn">Enroll Now</button>
+        <div class="buttons-container">
+          <button class="btn know-more-btn" onclick="handleKnowMore()">
+            Know More
+          </button>
+          <button class="btn enroll-btn" onclick="openModal()">
+            Enroll Now
+          </button>
+        </div>
       </div>
     </div>
+
+    <!-- Modal -->
+    <div class="modal-overlay" id="enrollModal">
+      <div class="modal">
+        <div class="modal-header">
+          <h3 class="modal-title">Enroll Now</h3>
+          <button class="close-btn" onclick="closeModal()">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+
+        <form id="enrollForm" onsubmit="handleSubmit(event)">
+          <div class="form-group">
+            <label class="form-label" for="name">Full Name *</label>
+            <input
+              type="text"
+              id="name"
+              class="form-input"
+              placeholder="Enter your full name"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="email">Email Address *</label>
+            <input
+              type="email"
+              id="email"
+              class="form-input"
+              placeholder="Enter your email address"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="phone">Phone Number *</label>
+            <input
+              type="tel"
+              id="phone"
+              class="form-input"
+              placeholder="Enter your phone number"
+              required
+            />
+          </div>
+
+          <button type="submit" class="submit-btn" id="submitBtn">
+            Send to WhatsApp
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <script>
+      function openModal() {
+        document.getElementById("enrollModal").classList.add("active");
+        document.body.style.overflow = "hidden";
+      }
+
+      function closeModal() {
+        document.getElementById("enrollModal").classList.remove("active");
+        document.body.style.overflow = "auto";
+        // Reset form
+        document.getElementById("enrollForm").reset();
+      }
+
+      function handleKnowMore() {
+        alert(
+          "Know More functionality - You can redirect to a detailed course page or show more information here!"
+        );
+      }
+
+      function handleSubmit(event) {
+        event.preventDefault();
+
+        const submitBtn = document.getElementById("submitBtn");
+        const name = document.getElementById("name").value.trim();
+        const email = document.getElementById("email").value.trim();
+        const phone = document.getElementById("phone").value.trim();
+
+        // Basic validation
+        if (!name || !email || !phone) {
+          alert("Please fill in all required fields.");
+          return;
+        }
+
+        // Email validation
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+          alert("Please enter a valid email address.");
+          return;
+        }
+
+        // Phone validation (basic)
+        const phoneRegex = /^[\d\s\+\-\(\)]+$/;
+        if (!phoneRegex.test(phone) || phone.length < 10) {
+          alert("Please enter a valid phone number.");
+          return;
+        }
+
+        // Disable submit button
+        submitBtn.disabled = true;
+        submitBtn.textContent = "Sending...";
+
+        // Create WhatsApp message
+        const courseName = "Video Editing Basics";
+        const coursePrice = "₹25,000";
+
+        const message = `Hello! I'm interested in enrolling for the ${courseName} course.
+
+*Course Details:*
+- Course: ${courseName}
+- Price: ${coursePrice}
+
+*My Details:*
+- Name: ${name}
+- Email: ${email}
+- Phone: ${phone}
+
+Please provide me with more information about enrollment and payment process.
+
+Thank you!`;
+
+        const whatsappNumber = "916295590363"; // Added country code
+        const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
+          message
+        )}`;
+
+        // Open WhatsApp
+        window.open(whatsappURL, "_blank");
+
+        // Show success message
+        setTimeout(() => {
+          alert(
+            "Redirecting to WhatsApp! Please send the message to complete your enrollment."
+          );
+          closeModal();
+
+          // Reset button
+          submitBtn.disabled = false;
+          submitBtn.textContent = "Send to WhatsApp";
+        }, 1000);
+      }
+
+      // Close modal when clicking outside
+      document
+        .getElementById("enrollModal")
+        .addEventListener("click", function (event) {
+          if (event.target === this) {
+            closeModal();
+          }
+        });
+
+      // Close modal with Escape key
+      document.addEventListener("keydown", function (event) {
+        if (event.key === "Escape") {
+          closeModal();
+        }
+      });
+    </script>
   </body>
 </html>

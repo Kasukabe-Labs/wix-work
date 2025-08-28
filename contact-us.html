@@ -3,246 +3,592 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Contact Section</title>
-
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-      integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
+    <title>Contact Form with WhatsApp</title>
 
     <!-- Google Fonts -->
     <link
-      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
 
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
     <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
       body {
         font-family: "Playfair Display", serif;
-        margin: 0;
-        padding: 20px;
+        background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
         color: #fff;
+        min-height: 100vh;
+        padding: 40px 20px;
       }
 
-      * {
-        font-family: "Playfair Display", serif !important;
-      }
-
-      ::placeholder {
-        font-family: "Playfair Display", serif;
-        font-size: 14px;
-        color: #999;
-      }
-
-      .contact-container {
+      .main-container {
+        max-width: 1200px;
+        margin: 0 auto;
         display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 20px;
+        grid-template-columns: 1fr 350px;
+        gap: 60px;
+        align-items: start;
+      }
+
+      /* Form Styles */
+      .form-container {
+        background: rgba(25, 25, 25, 0.8);
+        padding: 40px;
+        border-radius: 20px;
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .form-title {
+        font-size: 28px;
+        font-weight: 700;
         margin-bottom: 30px;
+        text-align: center;
+        background: linear-gradient(135deg, #fac851 0%, #e59935 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
       }
 
-      .contact-form {
-        background: #111;
-        padding: 30px 25px;
-        border-radius: 12px;
-        min-height: 420px;
-        display: flex;
-        flex-direction: column;
-      }
-
-      .contact-form h2 {
-        font-size: 26px;
-        margin-bottom: 10px;
-      }
-
-      .contact-form h2 span {
-        font-style: italic;
-      }
-
-      .contact-form p {
-        font-size: 14px;
-        color: #aaa;
-        margin-bottom: 20px;
+      .form-grid {
+        display: grid;
+        gap: 25px;
       }
 
       .form-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+      }
+
+      .form-group {
         display: flex;
-        gap: 10px;
-        margin-bottom: 12px;
+        flex-direction: column;
       }
 
-      .form-row input {
-        flex: 1;
+      .form-group.full-width {
+        grid-column: 1 / -1;
       }
 
-      .contact-form input,
-      .contact-form textarea {
-        width: 100%;
-        padding: 10px;
-        border: 1px solid #666;
-        border-radius: 6px;
-        background: transparent;
+      .form-label {
+        font-family: "Playfair Display", serif;
+        font-size: 16px;
+        font-weight: 500;
         color: #fff;
+        margin-bottom: 8px;
+      }
+
+      .form-input,
+      .form-select,
+      .form-textarea {
+        background: rgba(58, 58, 58, 0.8);
+        border: 1px solid #4a4a4a;
+        border-radius: 8px;
+        padding: 12px 15px;
+        font-family: "Playfair Display", serif;
         font-size: 14px;
+        color: #fff;
+        transition: all 0.3s ease;
       }
 
-      /* ✅ Add margin-top above textarea */
-      .contact-form textarea {
-        resize: none;
-        flex: 1;
-        margin-top: 12px;
+      .form-input:focus,
+      .form-select:focus,
+      .form-textarea:focus {
+        outline: none;
+        border-color: #fac851;
+        box-shadow: 0 0 0 2px rgba(250, 200, 81, 0.2);
+        background: rgba(58, 58, 58, 0.9);
       }
 
-      .contact-form button {
-        margin-top: 15px;
-        padding: 10px 20px;
+      .form-input::placeholder,
+      .form-textarea::placeholder {
+        color: #888;
+        font-family: "Playfair Display", serif;
+      }
+
+      .form-select {
+        cursor: pointer;
+      }
+
+      .form-select option {
+        background: #3a3a3a;
+        color: #fff;
+        font-family: "Playfair Display", serif;
+      }
+
+      .form-textarea {
+        min-height: 120px;
+        resize: vertical;
+      }
+
+      .submit-btn {
+        background: linear-gradient(
+          135deg,
+          #e59935 0%,
+          #ffe998 50%,
+          #e59935 100%
+        );
+        color: #1a1a1a;
         border: none;
-        border-radius: 20px;
+        border-radius: 25px;
+        padding: 15px 50px;
+        font-family: "Playfair Display", serif;
+        font-size: 16px;
         font-weight: 600;
         cursor: pointer;
-        background: linear-gradient(90deg, #e59935, #ffe998, #e59935);
-        color: #000;
-        font-size: 14px;
+        transition: all 0.3s ease;
+        margin-top: 20px;
+        justify-self: center;
+        box-shadow: 0 4px 15px rgba(229, 153, 53, 0.3);
       }
 
-      .contact-form button:hover {
-        opacity: 0.9;
+      .submit-btn:hover {
+        background: linear-gradient(
+          135deg,
+          #d4862e 0%,
+          #f5e089 50%,
+          #d4862e 100%
+        );
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(229, 153, 53, 0.4);
       }
 
-      .contact-info {
+      /* Contact Icons Styles */
+      .contact-container {
         display: flex;
         flex-direction: column;
         gap: 20px;
       }
 
-      .contact-info .image {
-        width: 100%;
-        height: 300px;
-        border-radius: 12px;
-        overflow: hidden;
+      .contact-title-section {
+        text-align: center;
+        margin-bottom: 20px;
       }
 
-      .contact-info .image img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
+      .contact-main-title {
+        font-size: 24px;
+        font-weight: 700;
+        background: linear-gradient(135deg, #fac851 0%, #e59935 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        margin-bottom: 10px;
       }
 
-      .info-boxes {
+      .contact-subtitle {
+        color: #ccc;
+        font-size: 14px;
+      }
+
+      .contact-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
+      }
+
+      .contact-box {
+        background: rgba(25, 25, 25, 0.8);
+        border-radius: 15px;
+        padding: 20px 15px;
+        text-align: center;
+        transition: all 0.3s ease;
+        cursor: pointer;
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
         display: flex;
-        gap: 20px;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
       }
 
-      .info-box {
-        flex: 1;
-        background: #111;
-        padding: 15px;
-        border-radius: 12px;
+      .contact-box:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+        border-color: rgba(250, 200, 81, 0.3);
+      }
+
+      .icon-wrapper {
+        width: 45px;
+        height: 45px;
+        border: 2px solid rgba(250, 200, 81, 0.3);
+        border-radius: 50%;
         display: flex;
         align-items: center;
-        gap: 10px;
+        justify-content: center;
+        margin-bottom: 12px;
+        transition: all 0.3s ease;
       }
 
-      .info-box i {
-        font-size: 20px;
-        color: #ffe998;
+      .contact-box:hover .icon-wrapper {
+        border-color: #fac851;
+        box-shadow: 0 0 15px rgba(250, 200, 81, 0.3);
       }
 
-      .info-box div {
-        font-size: 13px;
-        color: #ccc;
+      .contact-icon {
+        font-size: 18px;
+        color: #fac851;
+        transition: all 0.3s ease;
       }
 
-      .info-box div strong {
-        display: block;
+      .contact-box:hover .contact-icon {
+        transform: scale(1.1);
+      }
+
+      .contact-box-title {
+        font-family: "Playfair Display", serif;
+        font-size: 14px;
+        font-weight: 600;
         color: #fff;
-        margin-bottom: 4px;
+        margin-bottom: 5px;
       }
 
-      .map-container {
-        margin-top: 20px;
-        width: 100%;
-        height: 300px;
-        border-radius: 12px;
-        overflow: hidden;
+      .contact-info {
+        font-family: "Playfair Display", serif;
+        font-size: 11px;
+        color: #ccc;
+        line-height: 1.3;
       }
 
-      .map-container iframe {
-        width: 100%;
-        height: 100%;
-        border: 0;
+      /* Website contact box full width */
+      .contact-box.website {
+        grid-column: 1 / -1;
       }
 
+      /* Mobile Responsive */
       @media (max-width: 768px) {
-        .contact-container {
+        body {
+          padding: 20px 10px;
+        }
+
+        .main-container {
           grid-template-columns: 1fr;
+          gap: 30px;
         }
 
-        .info-boxes {
-          flex-direction: column;
+        .form-container {
+          padding: 30px 25px;
+          border-radius: 15px;
         }
 
-        .contact-info .image {
-          height: 220px;
+        .form-title {
+          font-size: 24px;
+          margin-bottom: 25px;
+        }
+
+        .form-row {
+          grid-template-columns: 1fr;
+          gap: 15px;
+        }
+
+        .form-grid {
+          gap: 20px;
+        }
+
+        .form-label {
+          font-size: 15px;
+        }
+
+        .form-input,
+        .form-select,
+        .form-textarea {
+          font-size: 14px;
+          padding: 12px 14px;
+        }
+
+        .form-textarea {
+          min-height: 100px;
+        }
+
+        .submit-btn {
+          font-size: 15px;
+          padding: 12px 40px;
+        }
+
+        .contact-main-title {
+          font-size: 20px;
+        }
+
+        .contact-grid {
+          grid-template-columns: 1fr 1fr;
+          gap: 12px;
+        }
+
+        .contact-box {
+          padding: 18px 12px;
+        }
+
+        .icon-wrapper {
+          width: 40px;
+          height: 40px;
+          margin-bottom: 10px;
+        }
+
+        .contact-icon {
+          font-size: 16px;
+        }
+
+        .contact-box-title {
+          font-size: 13px;
+        }
+
+        .contact-info {
+          font-size: 10px;
+        }
+      }
+
+      /* Small Mobile */
+      @media (max-width: 480px) {
+        .form-container {
+          padding: 25px 20px;
+        }
+
+        .form-title {
+          font-size: 22px;
+        }
+
+        .contact-grid {
+          gap: 10px;
+        }
+
+        .contact-box {
+          padding: 15px 10px;
+        }
+
+        .icon-wrapper {
+          width: 35px;
+          height: 35px;
+        }
+
+        .contact-icon {
+          font-size: 14px;
+        }
+
+        .contact-box-title {
+          font-size: 12px;
+        }
+
+        .contact-info {
+          font-size: 9px;
         }
       }
     </style>
   </head>
   <body>
-    <div class="contact-container">
-      <!-- Left: Form -->
-      <div class="contact-form">
-        <h2>Get in touch <span>with us</span></h2>
-        <p>We're here to help with any questions or feedback</p>
-
-        <div class="form-row">
-          <input type="text" placeholder="First name" />
-          <input type="text" placeholder="Last name" />
-        </div>
-        <input type="email" placeholder="Email" />
-        <textarea placeholder="Message"></textarea>
-
-        <button>Send More</button>
-      </div>
-
-      <!-- Right: Image + Info -->
-      <div class="contact-info">
-        <div class="image">
-          <img
-            src="https://img.freepik.com/free-photo/empty-online-radio-studio-broadcasting-room-with-professional-microphone-video-light-used-podcast-transmission-video-podcasting-setup-with-digital-mixer-console-laptop-computer_482257-33423.jpg?semt=ais_hybrid&w=740&q=80"
-            alt="Studio"
-          />
-        </div>
-        <div class="info-boxes">
-          <div class="info-box">
-            <i class="fa-solid fa-envelope"></i>
-            <div>
-              <strong>Email</strong>
-              Office : abcdefvc
+    <div class="main-container">
+      <!-- Form Section -->
+      <div class="form-container">
+        <h2 class="form-title">Get In Touch</h2>
+        <form class="form-grid" id="contactForm">
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">First name</label>
+              <input
+                type="text"
+                class="form-input"
+                id="firstName"
+                placeholder="Enter your first name"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Last name</label>
+              <input
+                type="text"
+                class="form-input"
+                id="lastName"
+                placeholder="Enter your last name"
+                required
+              />
             </div>
           </div>
-          <div class="info-box">
-            <i class="fa-solid fa-phone"></i>
-            <div>
-              <strong>Phone</strong>
-              Office : +91 9051819976
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Mobile Number</label>
+              <input
+                type="tel"
+                class="form-input"
+                id="mobile"
+                placeholder="Enter your number"
+                required
+              />
             </div>
+            <div class="form-group">
+              <label class="form-label">Email</label>
+              <input
+                type="email"
+                class="form-input"
+                id="email"
+                placeholder="Enter your email"
+                required
+              />
+            </div>
+          </div>
+
+          <div class="form-group full-width">
+            <label class="form-label"
+              >What are you interested in Learning</label
+            >
+            <select class="form-select" id="interest" required>
+              <option value="">Select your interest</option>
+              <option value="Cinematography">Cinematography</option>
+              <option value="Production">Production</option>
+              <option value="Direction">Direction</option>
+              <option value="Audio">Audio</option>
+              <option value="Equipment">Equipment</option>
+              <option value="Editing">Editing</option>
+              <option value="VFX">VFX</option>
+            </select>
+          </div>
+
+          <div class="form-group full-width">
+            <label class="form-label">Message</label>
+            <textarea
+              class="form-textarea"
+              id="message"
+              placeholder="Tell us about your project"
+            ></textarea>
+          </div>
+
+          <button type="submit" class="submit-btn">Submit</button>
+        </form>
+      </div>
+
+      <!-- Contact Section -->
+      <div class="contact-container">
+        <div class="contact-title-section">
+          <h2 class="contact-main-title">Contact Us</h2>
+          <p class="contact-subtitle">Choose your preferred way to reach us</p>
+        </div>
+
+        <div class="contact-grid">
+          <div class="contact-box" onclick="openWhatsApp()">
+            <div class="icon-wrapper">
+              <i class="fab fa-whatsapp contact-icon"></i>
+            </div>
+            <h3 class="contact-box-title">WhatsApp Us</h3>
+            <p class="contact-info">Quick Response</p>
+          </div>
+
+          <div class="contact-box" onclick="callUs()">
+            <div class="icon-wrapper">
+              <i class="fas fa-phone contact-icon"></i>
+            </div>
+            <h3 class="contact-box-title">Call Us</h3>
+            <p class="contact-info">+91 11-2233-44</p>
+          </div>
+
+          <div class="contact-box" onclick="openMaps()">
+            <div class="icon-wrapper">
+              <i class="fas fa-map-marker-alt contact-icon"></i>
+            </div>
+            <h3 class="contact-box-title">Visit us</h3>
+            <p class="contact-info">123 Avenue, Bengaluru</p>
+          </div>
+
+          <div class="contact-box" onclick="sendEmail()">
+            <div class="icon-wrapper">
+              <i class="fas fa-envelope contact-icon"></i>
+            </div>
+            <h3 class="contact-box-title">Email us</h3>
+            <p class="contact-info">123@gmail.com</p>
+          </div>
+
+          <div class="contact-box website" onclick="openWebsite()">
+            <div class="icon-wrapper">
+              <i class="fas fa-globe contact-icon"></i>
+            </div>
+            <h3 class="contact-box-title">Website</h3>
+            <p class="contact-info">www.123.com</p>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- Map -->
-    <div class="map-container">
-      <iframe
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3679.257285261754!2d75.85772591491903!3d22.752937385088365!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x396302b52f307ef7%3A0x61d42e2f1ffba07c!2sAkshay%20Entertainment!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
-        allowfullscreen=""
-        loading="lazy"
-        referrerpolicy="no-referrer-when-downgrade"
-      ></iframe>
-    </div>
+    <script>
+      // Form submission handler
+      document
+        .getElementById("contactForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+
+          // Get form data
+          const firstName = document.getElementById("firstName").value;
+          const lastName = document.getElementById("lastName").value;
+          const mobile = document.getElementById("mobile").value;
+          const email = document.getElementById("email").value;
+          const interest = document.getElementById("interest").value;
+          const message = document.getElementById("message").value;
+
+          // Create WhatsApp message
+          const whatsappMessage = `Hello! I'm interested in your services.
+        
+*Contact Details:*
+Name: ${firstName} ${lastName}
+Mobile: ${mobile}
+Email: ${email}
+Interest: ${interest}
+        
+*Message:*
+${message || "No additional message"}
+        
+Looking forward to hearing from you!`;
+
+          // Send to WhatsApp
+          sendToWhatsApp(whatsappMessage);
+        });
+
+      function sendToWhatsApp(message) {
+        const phoneNumber = "911122334455"; // Replace with your actual WhatsApp number
+        const encodedMessage = encodeURIComponent(message);
+        const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+        window.open(whatsappURL, "_blank");
+      }
+
+      function openWhatsApp() {
+        const phoneNumber = "911122334455"; // Replace with your actual WhatsApp number
+        const message = "Hello! I'd like to know more about your services.";
+        const encodedMessage = encodeURIComponent(message);
+        const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+        window.open(whatsappURL, "_blank");
+      }
+
+      function callUs() {
+        window.open("tel:+911122334455", "_self");
+      }
+
+      function openMaps() {
+        const address = "123 Avenue, Bengaluru";
+        const encodedAddress = encodeURIComponent(address);
+        const mapsURL = `https://www.google.com/maps/search/?api=1&query=${encodedAddress}`;
+        window.open(mapsURL, "_blank");
+      }
+
+      function sendEmail() {
+        const email = "123@gmail.com";
+        const subject = "Inquiry about your services";
+        const body =
+          "Hello,\n\nI'm interested in learning more about your services.\n\nBest regards,";
+        const mailtoURL = `mailto:${email}?subject=${encodeURIComponent(
+          subject
+        )}&body=${encodeURIComponent(body)}`;
+        window.open(mailtoURL, "_self");
+      }
+
+      function openWebsite() {
+        window.open("https://www.123.com", "_blank");
+      }
+    </script>
   </body>
 </html>

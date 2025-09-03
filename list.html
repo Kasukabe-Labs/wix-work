@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Course Details Component</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      body {
+        font-family: "Playfair Display", serif;
+
+        color: #fff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .container {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        width: 100%;
+        max-width: 200px;
+      }
+
+      .card {
+        display: flex;
+        align-items: center;
+        color: #fff;
+        padding: 20px;
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        font-size: 0.5rem;
+      }
+
+      .icon-box {
+        background: linear-gradient(135deg, #e59935, #ffe998);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        padding: 15px;
+        border-radius: 10px;
+        margin-right: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .icon-box i {
+        font-size: 2rem;
+      }
+
+      .text-content {
+        flex-grow: 1;
+      }
+
+      .text-content .label {
+        font-weight: 700;
+        margin: 0;
+        font-size: 1.25rem;
+      }
+
+      .text-content .value {
+        font-weight: 400;
+        margin-left: 8px;
+        font-size: 1.25rem;
+      }
+
+      @media (max-width: 600px) {
+        .card {
+          flex-direction: column;
+          align-items: flex-start;
+          text-align: left;
+          padding: 15px;
+        }
+        .icon-box {
+          margin: 0 0 15px 0;
+          align-self: flex-start;
+        }
+        .text-content {
+          display: flex;
+          flex-direction: column;
+          justify-content: flex-start;
+          text-align: left;
+        }
+
+        .text-content .value {
+          margin-left: 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="card">
+        <div class="icon-box">
+          <i class="fa-solid fa-calendar-alt"></i>
+        </div>
+        <div class="text-content">
+          <span class="label">Duration:</span>
+          <span class="value">1 Month</span>
+        </div>
+      </div>
+      <div class="card">
+        <div class="icon-box">
+          <i class="fa-solid fa-clock"></i>
+        </div>
+        <div class="text-content">
+          <span class="label">Timings:</span>
+          <span class="value">Morning / Evening Batches</span>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

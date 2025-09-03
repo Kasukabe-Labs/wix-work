@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Creative Services</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        color: #ffffff;
+        font-family: "Playfair Display", serif;
+        min-height: 100vh;
+        padding: 10px 10px;
+      }
+
+      .services-container {
+        max-width: 500px;
+        margin: 0 auto;
+      }
+
+      .services-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+      }
+
+      .service-card {
+        background: #191919;
+        opacity: 0.8;
+        border-radius: 24px;
+        padding: 30px 30px;
+        position: relative;
+        overflow: hidden;
+        transition: all 0.3s ease;
+        cursor: pointer;
+        min-height: 150px;
+      }
+      .service-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+      }
+
+      .service-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: #191919;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+
+      .service-card:hover::before {
+        opacity: 1;
+      }
+
+      .icon-container {
+        width: 40px;
+        height: 40px;
+        background: linear-gradient(135deg, #e59935 0%, #ffe998 100%);
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 15px;
+        position: relative;
+        z-index: 1;
+      }
+
+      .icon {
+        width: 20px;
+        height: 20px;
+        color: #000000;
+      }
+
+      .service-title {
+        font-size: 18px;
+        font-weight: 600;
+        margin-bottom: 8px;
+        color: #ffffff;
+        line-height: 1.2;
+        position: relative;
+        z-index: 1;
+      }
+
+      .service-description {
+        font-size: 13px;
+        color: #cccccc;
+        line-height: 1.4;
+        position: relative;
+        z-index: 1;
+      }
+
+      @media (max-width: 768px) {
+        .services-grid {
+          grid-template-columns: 1fr;
+          gap: 20px;
+        }
+
+        .service-card {
+          padding: 30px 25px;
+        }
+
+        .service-title {
+          font-size: 24px;
+        }
+
+        .service-description {
+          font-size: 15px;
+        }
+
+        .icon-container {
+          width: 50px;
+          height: 50px;
+          margin-bottom: 20px;
+        }
+
+        .icon {
+          width: 24px;
+          height: 24px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        body {
+          padding: 20px 15px;
+        }
+
+        .service-card {
+          padding: 25px 20px;
+        }
+
+        .service-title {
+          font-size: 22px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="services-container">
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="icon-container">
+            <svg class="icon" fill="currentColor" viewBox="0 0 24 24">
+              <path
+                d="M3 3h18v16H3V3zm2 2v12h14V5H5zm2 2h10v2H7V7zm0 4h10v2H7v-2zm0 4h7v2H7v-2z"
+              />
+            </svg>
+          </div>
+          <h3 class="service-title">Film Production</h3>
+          <p class="service-description">
+            Creative storytelling and creative consulting for your projects
+          </p>
+        </div>
+
+        <div class="service-card">
+          <div class="icon-container">
+            <svg class="icon" fill="currentColor" viewBox="0 0 24 24">
+              <path
+                d="M3 3h14v2H3V3zm0 4h14v2H3V7zm0 4h14v2H3v-2zm16-8v12h2V3h-2zm0 14H3v2h16v-2z"
+              />
+              <rect
+                x="5"
+                y="9"
+                width="8"
+                height="6"
+                rx="1"
+                fill="currentColor"
+              />
+            </svg>
+          </div>
+          <h3 class="service-title">Post Production</h3>
+          <p class="service-description">
+            Creative storytelling and creative consulting for your projects
+          </p>
+        </div>
+
+        <div class="service-card">
+          <div class="icon-container">
+            <svg class="icon" fill="currentColor" viewBox="0 0 24 24">
+              <path
+                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"
+              />
+              <circle cx="12" cy="12" r="3" fill="currentColor" />
+              <path d="M8 12c0-1.1.9-2 2-2s2 .9 2 2-.9 2-2 2-2-.9-2-2z" />
+            </svg>
+          </div>
+          <h3 class="service-title">Audio Production</h3>
+          <p class="service-description">
+            Creative storytelling and creative consulting for your projects
+          </p>
+        </div>
+
+        <div class="service-card">
+          <div class="icon-container">
+            <svg class="icon" fill="currentColor" viewBox="0 0 24 24">
+              <path
+                d="M18 4l2 4h-3l-2-4h-2l2 4h-3l-2-4H8l2 4H7L5 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V4h-4z"
+              />
+            </svg>
+          </div>
+          <h3 class="service-title">Creative Direction</h3>
+          <p class="service-description">
+            Creative storytelling and creative consulting for your projects
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Add click interaction for service cards
+      document.querySelectorAll(".service-card").forEach((card) => {
+        card.addEventListener("click", function () {
+          const title = this.querySelector(".service-title").textContent;
+          console.log(`Clicked on: ${title}`);
+          // You can add navigation or other functionality here
+        });
+      });
+    </script>
+  </body>
+</html>

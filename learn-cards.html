@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Component</title>
+
+    <!-- Google Font -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+
+    <style>
+      body {
+        font-family: "Playfair Display", serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 2rem;
+        padding: 3rem;
+        flex-wrap: wrap;
+      }
+
+      .card {
+        background: #191919;
+        color: #fff;
+        border-radius: 12px;
+        padding: 1rem;
+        width: 280px;
+        min-height: 230px; /* 👈 ensures equal height */
+        display: flex;
+        flex-direction: column;
+        box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.4);
+        transition: transform 0.3s ease;
+      }
+
+      .card:hover {
+        transform: translateY(-6px);
+      }
+
+      .icon-box {
+        height: 45px;
+        width: 45px;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(135deg, #e59935, #ffe998);
+        margin-bottom: 1rem;
+      }
+
+      .icon-box i {
+        font-size: 18px;
+        color: #000;
+      }
+
+      h3 {
+        margin: 0;
+        font-size: 1.2rem;
+        font-weight: 600;
+      }
+
+      ul {
+        list-style: none;
+        padding: 0;
+        margin: 0.8rem 0 0 0;
+      }
+
+      ul li {
+        font-size: 0.9rem;
+        color: #d1d1d1;
+        margin-bottom: 0.5rem;
+        position: relative;
+        padding-left: 14px;
+      }
+
+      ul li::before {
+        content: "•";
+        color: #fff;
+        position: absolute;
+        left: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Card 1 -->
+    <div class="card">
+      <div class="icon-box">
+        <i class="fa-solid fa-leaf"></i>
+      </div>
+      <h3>Basics</h3>
+      <ul>
+        <li>Photoshop Interface & Tools</li>
+        <li>Layers, Masks & Brushes</li>
+        <li>Selections & Shapes</li>
+      </ul>
+    </div>
+
+    <!-- Card 2 -->
+    <div class="card">
+      <div class="icon-box">
+        <i class="fa-solid fa-pen"></i>
+      </div>
+      <h3>Creative Editing</h3>
+      <ul>
+        <li>Background Removal & Replacement</li>
+        <li>Filters, Effects & Typography</li>
+        <li>Social Media Edits & Thumbnails</li>
+      </ul>
+    </div>
+
+    <!-- Card 3 -->
+    <div class="card">
+      <div class="icon-box">
+        <i class="fa-solid fa-wand-magic-sparkles"></i>
+      </div>
+      <h3>Professional Retouching</h3>
+      <ul>
+        <li>Portrait & Beauty Retouching</li>
+        <li>Product & Food Editing</li>
+        <li>Wedding & Event Styles</li>
+      </ul>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Course FAQ</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400..900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Playfair Display", serif;
+        min-height: 100vh;
+        padding: 10px;
+      }
+
+      .faq-container {
+        max-width: 800px;
+        margin: 0 auto;
+        background: #191919;
+        border-radius: 20px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        backdrop-filter: blur(10px);
+      }
+
+      .faq-header {
+        background: linear-gradient(135deg, #191919 0%, #2d2d2d 100%);
+        color: white;
+        text-align: center;
+        padding: 60px 40px;
+        position: relative;
+      }
+
+      .faq-header::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(254,196,71,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+        opacity: 0.3;
+      }
+
+      .faq-header h1 {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 10px;
+        position: relative;
+        z-index: 1;
+      }
+
+      .faq-header p {
+        font-size: 1.1rem;
+        opacity: 0.8;
+        font-weight: 300;
+        position: relative;
+        z-index: 1;
+      }
+
+      .faq-list {
+        padding: 40px;
+      }
+
+      .faq-item {
+        margin-bottom: 20px;
+        border: 1px solid #fec447;
+        border-radius: 16px;
+        overflow: hidden;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        background: #191919;
+      }
+
+      .faq-item:hover {
+        border-color: #fec447;
+        transform: translateY(-2px);
+        box-shadow: 0 8px 30px rgba(254, 196, 71, 0.15);
+      }
+
+      .faq-item.active {
+        border-color: #fec447;
+        box-shadow: 0 8px 30px rgba(254, 196, 71, 0.2);
+      }
+
+      .faq-question {
+        padding: 25px 30px;
+        background: #191919;
+        cursor: pointer;
+        display: flex;
+        justify-content: between;
+        align-items: center;
+        font-weight: 500;
+        font-size: 1.1rem;
+        color: #f8f9fa;
+        border: none;
+        width: 100%;
+        text-align: left;
+        transition: all 0.3s ease;
+        position: relative;
+      }
+
+      .faq-item.active .faq-question {
+        background: linear-gradient(135deg, #fec447 0%, #ffd666 100%);
+        color: #191919;
+        font-weight: 600;
+      }
+
+      .faq-question-text {
+        flex: 1;
+        margin-right: 20px;
+      }
+
+      .faq-icon {
+        font-size: 1.2rem;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        color: #666;
+        min-width: 24px;
+      }
+
+      .faq-item.active .faq-icon {
+        transform: rotate(180deg);
+        color: #191919;
+      }
+
+      .faq-answer {
+        max-height: 0;
+        overflow: hidden;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        background: #fafbfc;
+      }
+
+      .faq-answer.open {
+        max-height: 500px;
+      }
+
+      .faq-answer-content {
+        padding: 30px;
+        color: #4a5568;
+        font-size: 1rem;
+        line-height: 1.7;
+        border-top: 1px solid #e2e8f0;
+      }
+
+      .faq-answer-content p {
+        margin-bottom: 15px;
+      }
+
+      .faq-answer-content p:last-child {
+        margin-bottom: 0;
+      }
+
+      .highlight {
+        background: linear-gradient(120deg, #fec447 0%, transparent 100%);
+        background-size: 100% 30%;
+        background-repeat: no-repeat;
+        background-position: 0 70%;
+        font-weight: 500;
+        color: #191919;
+        padding: 0 4px;
+      }
+
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .faq-item {
+        animation: fadeInUp 0.6s ease forwards;
+      }
+
+      .faq-item:nth-child(1) {
+        animation-delay: 0.1s;
+      }
+      .faq-item:nth-child(2) {
+        animation-delay: 0.2s;
+      }
+      .faq-item:nth-child(3) {
+        animation-delay: 0.3s;
+      }
+      .faq-item:nth-child(4) {
+        animation-delay: 0.4s;
+      }
+      .faq-item:nth-child(5) {
+        animation-delay: 0.5s;
+      }
+
+      @media (max-width: 768px) {
+        .faq-container {
+          margin: 20px;
+          border-radius: 16px;
+        }
+
+        .faq-header {
+          padding: 40px 30px;
+        }
+
+        .faq-header h1 {
+          font-size: 2rem;
+        }
+
+        .faq-list {
+          padding: 30px 20px;
+        }
+
+        .faq-question {
+          padding: 20px;
+          font-size: 1rem;
+        }
+
+        .faq-answer-content {
+          padding: 20px;
+        }
+      }
+
+      /* Smooth scroll behavior */
+      html {
+        scroll-behavior: smooth;
+      }
+
+      /* Custom scrollbar */
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+
+      ::-webkit-scrollbar-track {
+        background: #f1f1f1;
+        border-radius: 4px;
+      }
+
+      ::-webkit-scrollbar-thumb {
+        background: #fec447;
+        border-radius: 4px;
+      }
+
+      ::-webkit-scrollbar-thumb:hover {
+        background: #e6b03f;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="faq-container">
+      <div class="faq-header">
+        <h1>
+          <i
+            class="fas fa-question-circle"
+            style="margin-right: 15px; color: #fec447"
+          ></i
+          >Frequently Asked Questions
+        </h1>
+        <p>Everything you need to know about our courses</p>
+      </div>
+
+      <div class="faq-list">
+        <div class="faq-item">
+          <button class="faq-question">
+            <span class="faq-question-text"
+              >How long do I have access to the course materials?</span
+            >
+            <i class="fas fa-chevron-down faq-icon"></i>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-content">
+              <p>
+                You'll have <span class="highlight">lifetime access</span> to
+                all course materials once you enroll. This includes video
+                lectures, downloadable resources, assignments, and any future
+                updates to the course content.
+              </p>
+              <p>
+                We believe in continuous learning, so you can revisit the
+                materials whenever you need a refresher or want to dive deeper
+                into specific topics.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span class="faq-question-text"
+              >Do you offer certificates upon completion?</span
+            >
+            <i class="fas fa-chevron-down faq-icon"></i>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-content">
+              <p>
+                Yes! Upon successful completion of the course, you'll receive a
+                <span class="highlight">verified certificate</span> that you can
+                share on your LinkedIn profile, resume, or portfolio.
+              </p>
+              <p>
+                Our certificates are recognized by industry professionals and
+                include verification codes to ensure authenticity.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span class="faq-question-text">What's your refund policy?</span>
+            <i class="fas fa-chevron-down faq-icon"></i>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-content">
+              <p>
+                We offer a
+                <span class="highlight">30-day money-back guarantee</span> for
+                all our courses. If you're not completely satisfied with your
+                learning experience, you can request a full refund within 30
+                days of purchase.
+              </p>
+              <p>
+                Simply contact our support team with your order details, and
+                we'll process your refund within 5-7 business days.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span class="faq-question-text"
+              >Are there any prerequisites for enrolling in courses?</span
+            >
+            <i class="fas fa-chevron-down faq-icon"></i>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-content">
+              <p>
+                Most of our courses are designed for
+                <span class="highlight">beginners to intermediate</span>
+                learners. Each course page clearly lists any specific
+                prerequisites or recommended background knowledge.
+              </p>
+              <p>
+                For advanced courses, we may require completion of foundational
+                courses or equivalent experience. Don't worry - we'll guide you
+                to the right starting point based on your current skill level.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span class="faq-question-text"
+              >Can I access courses on mobile devices?</span
+            >
+            <i class="fas fa-chevron-down faq-icon"></i>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-content">
+              <p>
+                Absolutely! Our platform is
+                <span class="highlight">fully responsive</span> and optimized
+                for mobile learning. You can access all course content on
+                smartphones, tablets, laptops, and desktop computers.
+              </p>
+              <p>
+                We also offer offline viewing options for video content, so you
+                can download lessons and learn on the go, even without an
+                internet connection.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const faqItems = document.querySelectorAll(".faq-item");
+
+        faqItems.forEach((item) => {
+          const question = item.querySelector(".faq-question");
+          const answer = item.querySelector(".faq-answer");
+          const icon = item.querySelector(".faq-icon");
+
+          question.addEventListener("click", () => {
+            const isActive = item.classList.contains("active");
+
+            // Close all other items
+            faqItems.forEach((otherItem) => {
+              if (otherItem !== item) {
+                otherItem.classList.remove("active");
+                otherItem.querySelector(".faq-answer").classList.remove("open");
+              }
+            });
+
+            // Toggle current item
+            if (isActive) {
+              item.classList.remove("active");
+              answer.classList.remove("open");
+            } else {
+              item.classList.add("active");
+              answer.classList.add("open");
+            }
+          });
+        });
+
+        // Add keyboard navigation
+        faqItems.forEach((item) => {
+          const question = item.querySelector(".faq-question");
+
+          question.addEventListener("keydown", (e) => {
+            if (e.key === "Enter" || e.key === " ") {
+              e.preventDefault();
+              question.click();
+            }
+          });
+        });
+
+        // Add smooth scroll effect when FAQ opens
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.style.opacity = "1";
+                entry.target.style.transform = "translateY(0)";
+              }
+            });
+          },
+          { threshold: 0.1 }
+        );
+
+        faqItems.forEach((item) => {
+          observer.observe(item);
+        });
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tabbed Image Gallery</title>
+
+    <!-- Google Font -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      body {
+        font-family: "Playfair Display", serif;
+        padding: 2rem;
+        text-align: center;
+        color: #fff;
+      }
+
+      .tabs {
+        display: flex;
+        justify-content: center;
+        gap: 2rem;
+        margin-bottom: 1.5rem;
+        flex-wrap: wrap;
+      }
+
+      .tab {
+        padding: 0.4rem 1rem;
+        border-radius: 20px;
+        border: 1px solid transparent;
+        cursor: pointer;
+        font-weight: 500;
+        transition: 0.3s;
+        color: #fff;
+      }
+
+      .tab.active {
+        background: transparent;
+        border: 1px solid #e59935;
+        color: #ffe998;
+      }
+
+      .image-container {
+        max-width: 900px;
+        margin: 0 auto;
+      }
+
+      .image-container img {
+        width: 100%;
+        height: 500px; /* fixed height */
+        border: 1px solid #e59935; /* golden border */
+        border-radius: 12px; /* rounded corners */
+        box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.5);
+        transition: opacity 0.5s ease;
+        object-fit: cover; /* keeps aspect ratio */
+      }
+
+      @media (max-width: 768px) {
+        .image-container img {
+          height: 300px; /* smaller height on mobile */
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="tabs">
+      <div class="tab active" data-category="portrait">Portrait</div>
+      <div class="tab" data-category="product">Product</div>
+      <div class="tab" data-category="wedding">Wedding</div>
+      <div class="tab" data-category="creative">Creative Posters</div>
+    </div>
+
+    <div class="image-container">
+      <img
+        id="mainImage"
+        src="https://raw.githubusercontent.com/ServiceStack/images/master/hero/photo-1429552054921-018e433d7d34.jpg"
+        alt="Gallery Image"
+      />
+    </div>
+
+    <script>
+      const tabs = document.querySelectorAll(".tab");
+      const mainImage = document.getElementById("mainImage");
+
+      const categories = {
+        portrait:
+          "https://raw.githubusercontent.com/ServiceStack/images/master/hero/photo-1429552054921-018e433d7d34.jpg",
+        product:
+          "https://raw.githubusercontent.com/ServiceStack/images/master/hero/photo-1453090927415-5f45085b65c0.jpg",
+        wedding:
+          "https://raw.githubusercontent.com/ServiceStack/images/master/hero/photo-1493704074932-e1c9d6ccd131.jpg",
+        creative:
+          "https://raw.githubusercontent.com/ServiceStack/images/master/hero/photo-1509664158680-07c5032b51e5.jpg",
+      };
+
+      tabs.forEach((tab) => {
+        tab.addEventListener("click", () => {
+          // Remove active class
+          tabs.forEach((t) => t.classList.remove("active"));
+          tab.classList.add("active");
+
+          // Change image
+          const category = tab.getAttribute("data-category");
+          mainImage.style.opacity = 0;
+          setTimeout(() => {
+            mainImage.src = categories[category];
+            mainImage.style.opacity = 1;
+          }, 300);
+        });
+      });
+    </script>
+  </body>
+</html>

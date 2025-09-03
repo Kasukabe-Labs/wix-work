@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bhinna a web series Course Card</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: "Playfair Display", serif;
+        background: #191919;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+      }
+      .course-card {
+        background: #191919;
+        border-radius: 16px;
+        padding: 24px;
+        max-width: 800px;
+        width: 100%;
+        display: grid;
+        /* Adjusted grid to better fit the new layout */
+        grid-template-columns: 320px 1fr;
+        gap: 32px; /* Increased gap for better separation */
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        border: 1px solid rgba(254, 196, 71, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+      .course-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 12px 48px rgba(0, 0, 0, 0.4);
+      }
+      /* New container for the left column elements */
+      .course-media {
+        display: flex;
+        flex-direction: column;
+      }
+      .image-container {
+        border-radius: 12px;
+        overflow: hidden;
+        width: 100%;
+        /* Adjusted height for a better aspect ratio in the new column width */
+        height: 180px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .course-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+        transition: transform 0.3s ease;
+      }
+      .course-card:hover .course-image {
+        transform: scale(1.05);
+      }
+      .description {
+        font-size: 14px;
+        line-height: 1.6;
+        color: #ced4da;
+        /* Added margin-top to create space below the image */
+        margin-top: 16px;
+        text-align: justify;
+      }
+      /* Updated Rent Button Styles */
+      .rent-button {
+        background: #fec447;
+        color: #191919;
+        border: none;
+        padding: 12px 20px;
+        border-radius: 8px;
+        font-size: 16px;
+        font-weight: 600;
+        font-family: "Playfair Display", serif;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 12px rgba(254, 196, 71, 0.3);
+        /* Added margin-top to space it from the description */
+        margin-top: 24px;
+        width: 100%;
+      }
+      .rent-button:hover {
+        background: #e6b03d;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 16px rgba(254, 196, 71, 0.4);
+      }
+      .course-content {
+        color: #ffffff;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        padding: 8px 0;
+      }
+      .course-title {
+        font-size: 24px; /* Slightly increased font size for title */
+        font-weight: 600;
+        color: #fec447;
+        margin-bottom: 4px;
+        line-height: 1.3;
+      }
+      .course-meta {
+        display: flex;
+        flex-wrap: wrap; /* Allow items to wrap on smaller screens */
+        gap: 16px;
+        margin-bottom: 8px;
+      }
+      .meta-item {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 14px;
+        color: #e9ecef;
+      }
+      .meta-item i {
+        color: #fec447;
+        font-size: 14px;
+      }
+      .rating {
+        color: #fec447;
+        font-weight: 500;
+      }
+      .learning-section {
+        margin-top: 16px; /* Added margin for better spacing */
+      }
+      .learning-section h3 {
+        font-size: 16px;
+        font-weight: 600;
+        color: #fec447;
+        margin-bottom: 12px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .learning-points {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+      .learning-points li {
+        display: flex;
+        align-items: flex-start;
+        gap: 8px;
+        font-size: 14px;
+        color: #e9ecef;
+        line-height: 1.5;
+      }
+      .learning-points li i {
+        color: #fec447;
+        margin-top: 2px;
+        font-size: 12px;
+      }
+      @media (max-width: 768px) {
+        .course-card {
+          grid-template-columns: 1fr;
+          gap: 24px;
+          padding: 16px;
+          max-width: 100%;
+        }
+        .image-container {
+          height: 220px;
+        }
+        .description {
+          margin-top: 16px;
+          margin-bottom: 0;
+        }
+        .rent-button {
+          margin-top: 20px;
+        }
+        .course-title {
+          font-size: 20px;
+        }
+        .learning-section {
+          margin-top: 0;
+        }
+      }
+      @media (max-width: 480px) {
+        .course-card {
+          padding: 12px;
+          gap: 20px;
+        }
+        .image-container {
+          height: 200px;
+        }
+        .course-title {
+          font-size: 18px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="course-card">
+      <div class="course-media">
+        <div class="image-container">
+          <img
+            src="https://static.wixstatic.com/media/46e2bb_549313d94b0a4cb8b76092e552e4b0a4~mv2.jpg"
+            alt="Bhinna a web series"
+            class="course-image"
+          />
+        </div>
+        <p class="description">
+          "Bhinna" a web series about Family, Suspense and Thriller. How 8 years
+          old child Bhinna will digest her mother death, after her mother death
+          what all the problems Bhinna and her father will face is a story.
+        </p>
+        <button class="rent-button">Rent Now</button>
+      </div>
+
+      <div class="course-content">
+        <div>
+          <h1 class="course-title">Bhinna a web series</h1>
+          <div class="course-meta">
+            <div class="meta-item">
+              <i class="fas fa-clock"></i>
+              <span>1H 45M</span>
+            </div>
+            <div class="meta-item">
+              <i class="fas fa-star"></i>
+              <span class="rating">4.9/5</span>
+            </div>
+            <div class="meta-item">
+              <i class="fas fa-users"></i>
+              <span>100 Students</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="learning-section">
+          <h3>
+            <i class="fas fa-lightbulb"></i>
+            What you'll learn
+          </h3>
+          <ul class="learning-points">
+            <li>
+              <i class="fas fa-check-circle"></i>
+              <span
+                >Master the art of cinematic storytelling and narrative
+                structure in short films</span
+              >
+            </li>
+            <li>
+              <i class="fas fa-check-circle"></i>
+              <span
+                >Learn advanced camera techniques and visual composition for
+                emotional impact</span
+              >
+            </li>
+            <li>
+              <i class="fas fa-check-circle"></i>
+              <span
+                >Understand post-production workflows and color grading for
+                award-winning quality</span
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Photoshop Basics Course Card</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400..900&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Playfair Display", serif;
+        padding: 0px;
+        min-height: 100vh;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .course-card {
+        background: #191919;
+        border-radius: 12px;
+        padding: 14px;
+        max-width: 450px;
+        width: 100%;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .course-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+      }
+
+      .course-image {
+        width: 100%;
+        height: 320px;
+        background-image: url("https://raw.githubusercontent.com/Kasukabe-Labs/wix-work/main/imgs/photoshop.jpg");
+        background-size: contain;
+        background-position: center;
+        border-radius: 8px;
+        margin-bottom: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .course-image::before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 80px;
+        height: 80px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .course-image i {
+        font-size: 40px;
+        color: #999;
+        z-index: 1;
+      }
+
+      .course-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 16px;
+      }
+
+      .rating-price {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
+      }
+
+      .rating {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .stars {
+        display: flex;
+        gap: 2px;
+      }
+
+      .stars i {
+        color: #ffd700;
+        font-size: 12px;
+      }
+
+      .rating-text {
+        color: #999;
+        font-size: 12px;
+        font-weight: 500;
+      }
+
+      .price-section {
+        text-align: right;
+      }
+
+      .price {
+        color: #fff;
+        font-size: 14px;
+        font-weight: 700;
+        margin-bottom: 2px;
+      }
+
+      .payment-type {
+        color: #999;
+        font-size: 12px;
+      }
+
+      .course-title {
+        color: #fff;
+        font-size: 24px;
+        font-weight: 700;
+        margin-bottom: 16px;
+        line-height: 1.2;
+      }
+
+      .course-description {
+        color: #ccc;
+        font-size: 16px;
+        line-height: 1.5;
+        margin-bottom: 24px;
+      }
+
+      .course-footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .students-info {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .student-avatars {
+        display: flex;
+        align-items: center;
+      }
+
+      .avatar {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        border: 2px solid #2d2d2d;
+        margin-left: -8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 14px;
+        color: #fff;
+        font-weight: 600;
+      }
+
+      .avatar:first-child {
+        margin-left: 0;
+      }
+
+      .avatar:nth-child(1) {
+        background: #ff6b6b;
+      }
+      .avatar:nth-child(2) {
+        background: #4ecdc4;
+      }
+      .avatar:nth-child(3) {
+        background: #45b7d1;
+      }
+
+      .student-count {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .count {
+        color: #fff;
+        font-size: 14px;
+        font-weight: 700;
+      }
+
+      .label {
+        color: #999;
+        font-size: 12px;
+      }
+
+      /* Button Styles */
+      .btn {
+        border: none;
+        border-radius: 25px;
+        padding: 12px 24px;
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+      }
+
+      .enroll-btn {
+        background: linear-gradient(135deg, #e59935, #ffe998, #e59935);
+        color: #2d2d2d;
+      }
+
+      .enroll-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(229, 153, 53, 0.4);
+      }
+
+      .enroll-btn:active {
+        transform: translateY(0);
+      }
+
+      .enroll-btn::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.2),
+          transparent
+        );
+        transition: left 0.5s;
+      }
+
+      .enroll-btn:hover::before {
+        left: 100%;
+      }
+
+      /* External Enroll Button */
+      .external-enroll-btn {
+        margin-top: 20px;
+        width: 100%;
+        max-width: 450px;
+        padding: 16px 32px;
+        font-size: 16px;
+        font-weight: 700;
+        border-radius: 30px;
+      }
+
+      /* Modal Styles */
+      .modal-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.8);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 1000;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s ease, visibility 0.3s ease;
+      }
+
+      .modal-overlay.active {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .modal {
+        background: #2d2d2d;
+        border-radius: 12px;
+        padding: 32px;
+        max-width: 400px;
+        width: 90%;
+        position: relative;
+        transform: translateY(-20px);
+        transition: transform 0.3s ease;
+      }
+
+      .modal-overlay.active .modal {
+        transform: translateY(0);
+      }
+
+      .modal-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 24px;
+      }
+
+      .modal-title {
+        color: #fff;
+        font-size: 24px;
+        font-weight: 700;
+      }
+
+      .close-btn {
+        background: none;
+        border: none;
+        color: #999;
+        font-size: 24px;
+        cursor: pointer;
+        padding: 0;
+        width: 32px;
+        height: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        transition: all 0.3s ease;
+      }
+
+      .close-btn:hover {
+        background: #404040;
+        color: #fff;
+      }
+
+      .form-group {
+        margin-bottom: 20px;
+      }
+
+      .form-label {
+        display: block;
+        color: #fff;
+        font-size: 14px;
+        font-weight: 600;
+        margin-bottom: 8px;
+      }
+
+      .form-input {
+        width: 100%;
+        padding: 12px 16px;
+        background: #404040;
+        border: 2px solid transparent;
+        border-radius: 8px;
+        color: #fff;
+        font-size: 14px;
+        transition: all 0.3s ease;
+      }
+
+      .form-input:focus {
+        outline: none;
+        border-color: #e59935;
+        background: #4a4a4a;
+      }
+
+      .form-input::placeholder {
+        color: #999;
+      }
+
+      .submit-btn {
+        width: 100%;
+        background: linear-gradient(135deg, #e59935, #ffe998, #e59935);
+        border: none;
+        border-radius: 8px;
+        padding: 14px 24px;
+        color: #2d2d2d;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .submit-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(229, 153, 53, 0.4);
+      }
+
+      .submit-btn:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+        transform: none;
+        box-shadow: none;
+      }
+
+      /* Mobile Responsiveness */
+      @media (max-width: 480px) {
+        body {
+          padding: 15px;
+        }
+
+        .course-card {
+          padding: 20px;
+          max-width: 100%;
+        }
+
+        .course-image {
+          height: 180px;
+        }
+
+        .stars i {
+          font-size: 10px;
+        }
+
+        .rating-text {
+          font-size: 12px;
+        }
+
+        .price {
+          font-size: 16px;
+        }
+
+        .payment-type {
+          font-size: 12px;
+        }
+
+        .course-title {
+          font-size: 16px;
+        }
+
+        .course-description {
+          font-size: 12px;
+        }
+
+        .count {
+          font-size: 14px;
+        }
+
+        .label {
+          font-size: 10px;
+        }
+
+        .external-enroll-btn {
+          font-size: 14px;
+          padding: 14px 24px;
+        }
+
+        .course-footer {
+          flex-direction: column;
+          gap: 16px;
+          align-items: stretch;
+        }
+
+        .students-info {
+          justify-content: center;
+        }
+
+        .modal {
+          padding: 24px;
+          margin: 20px;
+        }
+
+        .modal-title {
+          font-size: 20px;
+        }
+      }
+
+      /* Tablet Responsiveness */
+      @media (min-width: 481px) and (max-width: 768px) {
+        .course-card {
+          max-width: 450px;
+        }
+
+        .course-image {
+          height: 200px;
+        }
+
+        .course-title {
+          font-size: 20px;
+        }
+
+        .course-description {
+          font-size: 14px;
+        }
+      }
+
+      /* Large screens */
+      @media (min-width: 1200px) {
+        .course-card {
+          max-width: 420px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="course-card">
+      <div class="course-image"></div>
+
+      <div class="course-header">
+        <div class="rating-price">
+          <div class="rating">
+            <div class="stars">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+            </div>
+            <span class="rating-text">4.5k</span>
+          </div>
+        </div>
+        <div class="price-section">
+          <div class="price">₹25,000</div>
+          <div class="payment-type">One-time payment</div>
+        </div>
+      </div>
+
+      <h2 class="course-title">Photoshop Basics</h2>
+
+      <p class="course-description">
+        Dive deep into the world of professional cinematography, from camera
+        techniques and lighting to framing, movement, and mood. Learn how to
+        shoot like a pro.
+      </p>
+
+      <div class="course-footer">
+        <div class="students-info">
+          <div class="student-avatars">
+            <div class="avatar">A</div>
+            <div class="avatar">B</div>
+            <div class="avatar">C</div>
+          </div>
+          <div class="student-count">
+            <span class="count">25,000+</span>
+            <span class="label">Students Enrolled</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Enroll Button - Outside of course card -->
+    <button class="btn enroll-btn external-enroll-btn" onclick="openModal()">
+      <i class="fas fa-graduation-cap"></i> Enroll Today & Save 50%
+    </button>
+
+    <!-- Modal -->
+    <div class="modal-overlay" id="enrollModal">
+      <div class="modal">
+        <div class="modal-header">
+          <h3 class="modal-title">Enroll Now</h3>
+          <button class="close-btn" onclick="closeModal()">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+
+        <form id="enrollForm" onsubmit="handleSubmit(event)">
+          <div class="form-group">
+            <label class="form-label" for="name">Full Name *</label>
+            <input
+              type="text"
+              id="name"
+              class="form-input"
+              placeholder="Enter your full name"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="email">Email Address *</label>
+            <input
+              type="email"
+              id="email"
+              class="form-input"
+              placeholder="Enter your email address"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="phone">Phone Number *</label>
+            <input
+              type="tel"
+              id="phone"
+              class="form-input"
+              placeholder="Enter your phone number"
+              required
+            />
+          </div>
+
+          <button type="submit" class="submit-btn" id="submitBtn">
+            Send to WhatsApp
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <script>
+      function openModal() {
+        document.getElementById("enrollModal").classList.add("active");
+        document.body.style.overflow = "hidden";
+      }
+
+      function closeModal() {
+        document.getElementById("enrollModal").classList.remove("active");
+        document.body.style.overflow = "auto";
+        // Reset form
+        document.getElementById("enrollForm").reset();
+      }
+
+      function handleSubmit(event) {
+        event.preventDefault();
+
+        const submitBtn = document.getElementById("submitBtn");
+        const name = document.getElementById("name").value.trim();
+        const email = document.getElementById("email").value.trim();
+        const phone = document.getElementById("phone").value.trim();
+
+        // Basic validation
+        if (!name || !email || !phone) {
+          alert("Please fill in all required fields.");
+          return;
+        }
+
+        // Email validation
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+          alert("Please enter a valid email address.");
+          return;
+        }
+
+        // Phone validation (basic)
+        const phoneRegex = /^[\d\s\+\-\(\)]+$/;
+        if (!phoneRegex.test(phone) || phone.length < 10) {
+          alert("Please enter a valid phone number.");
+          return;
+        }
+
+        // Disable submit button
+        submitBtn.disabled = true;
+        submitBtn.textContent = "Sending...";
+
+        // Create WhatsApp message
+        const courseName = "Photoshop Basics";
+        const coursePrice = "₹25,000";
+
+        const message = `Hello! I'm interested in enrolling for the ${courseName} course.
+
+*Course Details:*
+- Course: ${courseName}
+- Price: ${coursePrice}
+
+*My Details:*
+- Name: ${name}
+- Email: ${email}
+- Phone: ${phone}
+
+Please provide me with more information about enrollment and payment process.
+
+Thank you!`;
+
+        const whatsappNumber = "916295590363"; // Added country code
+        const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
+          message
+        )}`;
+
+        // Open WhatsApp
+        window.open(whatsappURL, "_blank");
+
+        // Show success message
+        setTimeout(() => {
+          alert(
+            "Redirecting to WhatsApp! Please send the message to complete your enrollment."
+          );
+          closeModal();
+
+          // Reset button
+          submitBtn.disabled = false;
+          submitBtn.textContent = "Send to WhatsApp";
+        }, 1000);
+      }
+
+      // Close modal when clicking outside
+      document
+        .getElementById("enrollModal")
+        .addEventListener("click", function (event) {
+          if (event.target === this) {
+            closeModal();
+          }
+        });
+
+      // Close modal with Escape key
+      document.addEventListener("keydown", function (event) {
+        if (event.key === "Escape") {
+          closeModal();
+        }
+      });
+    </script>
+  </body>
+</html>

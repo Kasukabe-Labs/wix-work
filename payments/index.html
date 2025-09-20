@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rent Now with OTP + Razorpay</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        padding: 50px;
+        background: #f4f4f9;
+      }
+      button {
+        padding: 12px 20px;
+        font-size: 18px;
+        border: none;
+        border-radius: 6px;
+        background: #3a86ff;
+        color: white;
+        cursor: pointer;
+      }
+      #otpModal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        justify-content: center;
+        align-items: center;
+      }
+      .modal-content {
+        background: white;
+        padding: 20px;
+        border-radius: 8px;
+        width: 320px;
+        text-align: center;
+      }
+      input {
+        margin: 10px 0;
+        padding: 10px;
+        width: 90%;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Rent Product</h2>
+    <button id="rentNow">Rent Now</button>
+
+    <!-- OTP Modal -->
+    <div id="otpModal">
+      <div class="modal-content">
+        <h3>Verify Phone</h3>
+        <input type="text" id="phoneNumber" placeholder="+91XXXXXXXXXX" />
+        <div id="recaptcha-container"></div>
+        <button id="sendOtpBtn">Send OTP</button>
+
+        <div id="otpSection" style="display: none">
+          <input type="text" id="otpCode" placeholder="Enter OTP" />
+          <button id="verifyOtpBtn">Verify OTP</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth-compat.js"></script>
+
+    <!-- Razorpay -->
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+    <script>
+      // 🔹 Firebase Config (replace with your values from dashboard)
+      const firebaseConfig = {
+        apiKey: "AIzaSyAdiwZi_mLZY4WzQL5ytLMknasNnmn6DIM",
+        authDomain: "wixrentapp.firebaseapp.com",
+        projectId: "wixrentapp",
+        storageBucket: "wixrentapp.appspot.com",
+        messagingSenderId: "964363582378",
+        appId: "1:964363582378:web:c8bba794a79131edb849d3",
+        measurementId: "G-E8J4NBJB6K",
+      };
+
+      firebase.initializeApp(firebaseConfig);
+      const auth = firebase.auth();
+
+      const rentBtn = document.getElementById("rentNow");
+      const otpModal = document.getElementById("otpModal");
+      const sendOtpBtn = document.getElementById("sendOtpBtn");
+      const verifyOtpBtn = document.getElementById("verifyOtpBtn");
+      const otpSection = document.getElementById("otpSection");
+      let confirmationResult;
+
+      // Open modal on Rent Now
+      rentBtn.addEventListener("click", () => {
+        otpModal.style.display = "flex";
+        window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier(
+          "recaptcha-container",
+          {
+            size: "normal",
+          }
+        );
+        recaptchaVerifier.render();
+      });
+
+      // Send OTP
+      sendOtpBtn.addEventListener("click", () => {
+        const phoneNumber = document.getElementById("phoneNumber").value;
+        const appVerifier = window.recaptchaVerifier;
+
+        auth
+          .signInWithPhoneNumber(phoneNumber, appVerifier)
+          .then((result) => {
+            confirmationResult = result;
+            alert("OTP sent!");
+            otpSection.style.display = "block";
+          })
+          .catch((err) => {
+            alert("Error: " + err.message);
+          });
+      });
+
+      // Verify OTP
+      verifyOtpBtn.addEventListener("click", () => {
+        const code = document.getElementById("otpCode").value;
+        confirmationResult
+          .confirm(code)
+          .then((result) => {
+            alert("Phone verified!");
+            otpModal.style.display = "none";
+            startRazorpay();
+          })
+          .catch((err) => {
+            alert("Invalid OTP: " + err.message);
+          });
+      });
+
+      // 🔹 Razorpay Checkout after OTP verification
+      function startRazorpay() {
+        const options = {
+          key: "rzp_live_RFVv6dLDDvLWaH", // replace with Razorpay Key ID
+          amount: 50 * 100, // Rs 50
+          currency: "INR",
+          name: "Wix Rent App",
+          description: "Product Rental",
+          handler: function (response) {
+            alert("Payment Success! ID: " + response.razorpay_payment_id);
+          },
+          prefill: {
+            name: "User",
+            email: "user@example.com",
+            contact: "", // you can fill verified number here
+          },
+          theme: { color: "#3a86ff" },
+        };
+        const rzp = new Razorpay(options);
+        rzp.open();
+      }
+    </script>
+  </body>
+</html>

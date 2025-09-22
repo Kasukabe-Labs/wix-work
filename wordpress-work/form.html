@@ -1,0 +1,211 @@
+<div
+  style="
+    font-family: 'Literata', serif;
+    width: 100%;
+    max-width: 600px;
+    margin: auto;
+  "
+>
+  <form
+    id="bookingForm"
+    style="display: flex; flex-direction: column; gap: 18px; width: 100%"
+  >
+    <!-- Event Type -->
+    <select
+      id="eventType"
+      style="
+        padding: 16px;
+        width: 100%;
+        background: #0b0e11;
+        color: #e3c08d;
+        border: 1px solid #444;
+        border-radius: 6px;
+        font-size: 16px;
+      "
+    >
+      <option disabled="disabled" selected="selected" value="">
+        Select Event Type
+      </option>
+      <option>Wedding</option>
+      <option>Birthday</option>
+      <option>Anniversary</option>
+      <option>Rice Ceremony</option>
+      <option>Corporate</option>
+      <option>Others</option>
+    </select>
+
+    <!-- Date of Event -->
+    <div style="display: flex; flex-direction: column; gap: 6px">
+      <label style="color: #e3c08d; font-size: 14px" for="eventDate"
+        >Date of Event</label
+      >
+      <input
+        id="eventDate"
+        style="
+          padding: 16px;
+          width: 100%;
+          background: #0b0e11;
+          color: #e3c08d;
+          border: 1px solid #444;
+          border-radius: 6px;
+          font-size: 16px;
+        "
+        type="date"
+      />
+    </div>
+    <!-- Number of Guests -->
+    <select
+      id="guestCount"
+      style="
+        padding: 16px;
+        width: 100%;
+        background: #0b0e11;
+        color: #e3c08d;
+        border: 1px solid #444;
+        border-radius: 6px;
+        font-size: 16px;
+      "
+    >
+      <option disabled="disabled" selected="selected" value="">
+        Number of Guests
+      </option>
+      <option>Below 100</option>
+      <option>100-300</option>
+      <option>300-500</option>
+      <option>500-800</option>
+      <option>800-1000</option>
+      <option>Above 1000</option>
+    </select>
+
+    <!-- Menu Preference -->
+    <select
+      id="menuPreference"
+      style="
+        padding: 16px;
+        width: 100%;
+        background: #0b0e11;
+        color: #e3c08d;
+        border: 1px solid #444;
+        border-radius: 6px;
+        font-size: 16px;
+      "
+    >
+      <option disabled="disabled" selected="selected" value="">
+        Menu Preference
+      </option>
+      <option>Veg</option>
+      <option>Non-Veg</option>
+    </select>
+
+    <!-- Name (Required) -->
+    <input
+      id="name"
+      style="
+        padding: 16px;
+        width: 100%;
+        background: #0b0e11;
+        color: #e3c08d;
+        border: 1px solid #444;
+        border-radius: 6px;
+        font-size: 16px;
+      "
+      required=""
+      type="text"
+      placeholder="Your Name *"
+    />
+
+    <!-- Email (Required) -->
+    <input
+      id="email"
+      style="
+        padding: 16px;
+        width: 100%;
+        background: #0b0e11;
+        color: #e3c08d;
+        border: 1px solid #444;
+        border-radius: 6px;
+        font-size: 16px;
+      "
+      required=""
+      type="email"
+      placeholder="Your Email *"
+    />
+
+    <!-- Phone Number (Required) -->
+    <input
+      id="phone"
+      style="
+        padding: 16px;
+        width: 100%;
+        background: #0b0e11;
+        color: #e3c08d;
+        border: 1px solid #444;
+        border-radius: 6px;
+        font-size: 16px;
+      "
+      required=""
+      type="tel"
+      placeholder="Phone Number *"
+    />
+
+    <!-- Submit -->
+    <button
+      id="bookBtn"
+      style="
+        padding: 16px;
+        font-size: 18px;
+        font-weight: 600;
+        background: #e3c08d;
+        color: #0b0e11;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: 0.3s;
+        width: 100%;
+      "
+      type="submit"
+    >
+      Book Event
+    </button>
+  </form>
+</div>
+<script>
+  const form = document.getElementById("bookingForm");
+  const bookBtn = document.getElementById("bookBtn");
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    bookBtn.disabled = true;
+    bookBtn.textContent = "Booking...";
+
+    const eventType = document.getElementById("eventType").value;
+    const eventDate = document.getElementById("eventDate").value;
+    const guestCount = document.getElementById("guestCount").value;
+    const menuPreference = document.getElementById("menuPreference").value;
+    const name = document.getElementById("name").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const phone = document.getElementById("phone").value.trim();
+
+    const phoneNumber = "917004310899";
+
+    let message = `Hello, I would like to book an event.
+
+Name: ${name}
+Email: ${email}
+Phone: ${phone}`;
+    if (eventType) message += `\nEvent Type: ${eventType}`;
+    if (eventDate) message += `\nEvent Date: ${eventDate}`;
+    if (guestCount) message += `\nNumber of Guests: ${guestCount}`;
+    if (menuPreference) message += `\nMenu Preference: ${menuPreference}`;
+
+    const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(
+      message
+    )}`;
+    window.open(url, "_blank");
+
+    setTimeout(() => {
+      bookBtn.disabled = false;
+      bookBtn.textContent = "Book Event";
+    }, 3000);
+  });
+</script>

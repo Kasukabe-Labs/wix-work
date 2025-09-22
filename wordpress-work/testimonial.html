@@ -1,0 +1,194 @@
+&nbsp;
+
+<style>
+  .testimonials-wrapper {<br />
+      font-family: 'Lato', sans-serif;<br />
+      padding: 30px 0;<br />
+  }</p>
+  <p>.testimonials-container {<br />
+      max-width: 1200px;<br />
+      margin: 0 auto;<br />
+      padding: 0 20px;<br />
+  }</p>
+  <p>.testimonials-grid {<br />
+      display: grid;<br />
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));<br />
+      gap: 30px;<br />
+  }</p>
+  <p>.testimonial-card {<br />
+      background: #0B0E11;<br />
+      border-radius: 15px;<br />
+      padding: 35px 30px;<br />
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);<br />
+      transition: transform 0.3s ease, box-shadow 0.3s ease;<br />
+      position: relative;<br />
+      overflow: hidden;<br />
+  }</p>
+  <p>.testimonial-card:before {<br />
+      content: '';<br />
+      position: absolute;<br />
+      top: 0;<br />
+      left: 0;<br />
+      right: 0;<br />
+      height: 4px;<br />
+      background: #E3C08D;<br />
+  }</p>
+  <p>.testimonial-card:hover {<br />
+      transform: translateY(-5px);<br />
+      box-shadow: 0 20px 40px rgba(0,0,0,0.15);<br />
+  }</p>
+  <p>.quote-icon {<br />
+      font-size: 2.5rem;<br />
+      color: #E3C08D;<br />
+      opacity: 0.3;<br />
+      margin-bottom: 20px;<br />
+  }</p>
+  <p>.testimonial-text {<br />
+      font-size: 1.1rem;<br />
+      line-height: 1.7;<br />
+      color: #E3C08D;<br />
+      margin-bottom: 25px;<br />
+      font-weight: 400;<br />
+      font-style: italic;<br />
+  }</p>
+  <p>.testimonial-author {<br />
+      display: flex;<br />
+      align-items: center;<br />
+      gap: 15px;<br />
+  }</p>
+  <p>.author-avatar {<br />
+      width: 60px;<br />
+      height: 60px;<br />
+      border-radius: 50%;<br />
+      object-fit: cover;<br />
+      border: 3px solid #E3C08D;<br />
+  }</p>
+  <p>.author-info h4 {<br />
+      font-size: 1.1rem;<br />
+      font-weight: 600;<br />
+      color: #E3C08D;<br />
+      margin-bottom: 5px;<br />
+  }</p>
+  <p>.author-info .position {<br />
+      font-size: 0.9rem;<br />
+      color: #E3C08D;<br />
+      opacity: 0.7;<br />
+      margin-bottom: 8px;<br />
+  }</p>
+  <p>.rating {<br />
+      display: flex;<br />
+      gap: 3px;<br />
+  }</p>
+  <p>.rating i {<br />
+      color: #E3C08D;<br />
+      font-size: 0.9rem;<br />
+  }</p>
+  <p>@media (max-width: 768px) {<br />
+      .testimonials-title h2 {<br />
+                      <img src="https://ui-avatars.com/api/?name=Emma+Rodriguez&background=E3C08D&color=0B0E11&size=120&bold=true" alt="Emma Rodriguez" class="author-avatar">font-size: 2.2rem;<br />
+      }</p>
+  <p>    .testimonials-grid {<br />
+          grid-template-columns: 1fr;<br />
+          gap: 25px;<br />
+      }</p>
+  <p>    .testimonial-card {<br />
+          padding: 25px 20px;<br />
+      }</p>
+  <p>    .testimonial-text {<br />
+          font-size: 1rem;<br />
+      }<br />
+  }<br />
+</style>
+<div class="testimonials-wrapper">
+  <div class="testimonials-container">
+    <div class="testimonials-grid">
+      <!-- Testimonial 1 -->
+      <div class="testimonial-card">
+        <i class="fas fa-quote-left quote-icon"></i>
+        <p class="testimonial-text">
+          "The service exceeded my expectations! The team was professional,
+          responsive, and delivered outstanding results. I couldn't be happier
+          with the outcome and would definitely recommend them to anyone."
+        </p>
+
+        <div class="testimonial-author">
+          <img
+            class="author-avatar"
+            src="https://ui-avatars.com/api/?name=Sarah+Johnson&amp;background=E3C08D&amp;color=0B0E11&amp;size=120&amp;bold=true"
+            alt="Sarah Johnson"
+          />
+          <div class="author-info">
+            <h4>Sarah Johnson</h4>
+            <p class="position">Marketing Director</p>
+
+            <div class="rating">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Testimonial 2 -->
+      <div class="testimonial-card">
+        <i class="fas fa-quote-left quote-icon"></i>
+        <p class="testimonial-text">
+          "Absolutely phenomenal experience from start to finish. The attention
+          to detail and quality of work was impressive. They truly understand
+          their craft and deliver beyond expectations every time."
+        </p>
+
+        <div class="testimonial-author">
+          <img
+            class="author-avatar"
+            src="https://ui-avatars.com/api/?name=Michael+Chen&amp;background=E3C08D&amp;color=0B0E11&amp;size=120&amp;bold=true"
+            alt="Michael Chen"
+          />
+          <div class="author-info">
+            <h4>Michael Chen</h4>
+            <p class="position">CEO, Tech Solutions</p>
+
+            <div class="rating">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Testimonial 3 -->
+      <div class="testimonial-card">
+        <i class="fas fa-quote-left quote-icon"></i>
+        <p class="testimonial-text">
+          "Working with this team has been a game-changer for our business.
+          Their expertise, creativity, and dedication to customer satisfaction
+          is unmatched. Highly recommend their services!"
+        </p>
+
+        <div class="testimonial-author">
+          <img
+            class="author-avatar"
+            src="https://ui-avatars.com/api/?name=Emma+Rodriguez&amp;background=e74c3c&amp;color=fff&amp;size=120&amp;bold=true"
+            alt="Emma Rodriguez"
+          />
+          <div class="author-info">
+            <h4>Emma Rodriguez</h4>
+            <p class="position">Creative Director</p>
+
+            <div class="rating">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
